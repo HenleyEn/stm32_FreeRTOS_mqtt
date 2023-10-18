@@ -1,0 +1,11 @@
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTUnsubscribeServer.c
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTPacket.h
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTConnect.h
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTPublish.h
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTSubscribe.h
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTUnsubscribe.h
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTFormat.h
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\StackTrace.h
+..\obj\mqttunsubscribeserver.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\mqttunsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTPacket.h
+..\obj\mqttunsubscribeserver.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h

@@ -1,0 +1,15 @@
+..\obj\platform_mutex.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.c
+..\obj\platform_mutex.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\FreeRTOS.h
+..\obj\platform_mutex.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
+..\obj\platform_mutex.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\platform_mutex.o: ..\USER\FreeRTOSConfig.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\projdefs.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\portable.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\deprecated_definitions.h
+..\obj\platform_mutex.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\mpu_wrappers.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\semphr.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\queue.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\task.h
+..\obj\platform_mutex.o: ..\FreeRTOS\include\list.h

@@ -1,0 +1,13 @@
+..\obj\platform_timer.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_timer.c
+..\obj\platform_timer.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_timer.h
+..\obj\platform_timer.o: ..\FreeRTOS\include\FreeRTOS.h
+..\obj\platform_timer.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
+..\obj\platform_timer.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\platform_timer.o: ..\USER\FreeRTOSConfig.h
+..\obj\platform_timer.o: ..\FreeRTOS\include\projdefs.h
+..\obj\platform_timer.o: ..\FreeRTOS\include\portable.h
+..\obj\platform_timer.o: ..\FreeRTOS\include\deprecated_definitions.h
+..\obj\platform_timer.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+..\obj\platform_timer.o: ..\FreeRTOS\include\mpu_wrappers.h
+..\obj\platform_timer.o: ..\FreeRTOS\include\task.h
+..\obj\platform_timer.o: ..\FreeRTOS\include\list.h

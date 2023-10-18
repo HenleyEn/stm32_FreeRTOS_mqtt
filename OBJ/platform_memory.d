@@ -1,0 +1,14 @@
+..\obj\platform_memory.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_memory.c
+..\obj\platform_memory.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_memory.h
+..\obj\platform_memory.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
+..\obj\platform_memory.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\platform_memory.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
+..\obj\platform_memory.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
+..\obj\platform_memory.o: ..\FreeRTOS\include\FreeRTOS.h
+..\obj\platform_memory.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\platform_memory.o: ..\USER\FreeRTOSConfig.h
+..\obj\platform_memory.o: ..\FreeRTOS\include\projdefs.h
+..\obj\platform_memory.o: ..\FreeRTOS\include\portable.h
+..\obj\platform_memory.o: ..\FreeRTOS\include\deprecated_definitions.h
+..\obj\platform_memory.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+..\obj\platform_memory.o: ..\FreeRTOS\include\mpu_wrappers.h
