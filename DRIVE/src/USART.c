@@ -1,7 +1,7 @@
 #include "include.h"
 
 
-pt_ringbuf_t USART3_RingBuf;
+ringbuf_t USART3_RingBuf;
 
 void USART1_Config(uint32_t BaudRate)
 {
@@ -76,21 +76,19 @@ void USART3_Config(uint32_t BaudRate)
 	NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
 	NVIC_Init(&NVIC_InitStructure);
 	
 	USART_Cmd(USART3, ENABLE);
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 
-	ringbuf_init(USART3_RingBuf);
+	ringbuf_init(&USART3_RingBuf);
 }
 
 void USART3_SendByte(uint8_t Byte)
 {
-	USART_SendData(USART3, Byte);
-
 	while(USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET);
-	
+	USART_SendData(USART3, Byte);
 }
 
 void USART3_SendArray(uint8_t arr[], uint16_t length)
@@ -99,13 +97,14 @@ void USART3_SendArray(uint8_t arr[], uint16_t length)
 	for(i=0; i<length; i++)
 	{
 		USART3_SendByte(arr[i]);
+		ringbuf_write(&USART3_RingBuf, arr[i]);
 	}
 }
 void USART3_IRQHandler(void)
 {
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
 	{
-		ringbuf_write(USART3_RingBuf,USART_ReceiveData(USART3));
+		ringbuf_write(&USART3_RingBuf,USART_ReceiveData(USART3));
 		USART_ClearITPendingBit(USART3, USART_IT_RXNE);  
 	}
 }

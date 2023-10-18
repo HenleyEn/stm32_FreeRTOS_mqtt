@@ -4,7 +4,7 @@ void ringbuf_init(pt_ringbuf_t ringbuf)
 {
 	ringbuf->read = 0;
 	ringbuf->write = 0;
-	memset(ringbuf->buf, '\0', sizeof(ringbuf->buf));
+	memset(ringbuf->buf, 0, BUF_SIZE);
 }
 
 uint8_t ringbuf_empty(pt_ringbuf_t ringbuf)
@@ -43,8 +43,8 @@ void ringbuf_write(pt_ringbuf_t ringbuf, unsigned char data)
 	{
 		if(ringbuf_full(ringbuf) != TRUE)
 		{
-			ringbuf->write = (ringbuf->write + 1) % BUF_SIZE;
 			ringbuf->buf[ringbuf->write] = data;
+			ringbuf->write = (ringbuf->write + 1) % BUF_SIZE;
 		}
 	}
 }

@@ -4,7 +4,7 @@
 
 #define TRUE	1
 #define FALSE	0
-#define BUF_SIZE	100
+#define BUF_SIZE	20
 typedef struct {
 	uint8_t buf[BUF_SIZE];
 	uint8_t write;
