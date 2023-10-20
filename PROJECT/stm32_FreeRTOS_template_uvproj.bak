@@ -637,6 +637,11 @@
               <FileType>1</FileType>
               <FilePath>..\DRIVE\src\USART.c</FilePath>
             </File>
+            <File>
+              <FileName>ringbuf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVE\src\ringbuf.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
