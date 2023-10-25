@@ -427,6 +427,11 @@
               <FileType>5</FileType>
               <FilePath>..\USER\FreeRTOSConfig.h</FilePath>
             </File>
+            <File>
+              <FileName>projectConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\projectConfig.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -641,6 +646,11 @@
               <FileName>ringbuf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\DRIVE\src\ringbuf.c</FilePath>
+            </File>
+            <File>
+              <FileName>ESP8266_AT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVE\src\ESP8266_AT.c</FilePath>
             </File>
           </Files>
         </Group>

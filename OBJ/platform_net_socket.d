@@ -48,5 +48,14 @@
 ..\obj\platform_net_socket.o: ..\STM32F10xLIB\inc\misc.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\task.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\list.h
+..\obj\platform_net_socket.o: ..\FreeRTOS\include\queue.h
+..\obj\platform_net_socket.o: ..\FreeRTOS\include\semphr.h
+..\obj\platform_net_socket.o: ..\USER\projectConfig.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\USART.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\ringbuf.h
+..\obj\platform_net_socket.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\platform_net_socket.o: ..\USER\include.h
+..\obj\platform_net_socket.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\platform_net_socket.o: ..\DRIVE\inc\device_mutex.h
+..\obj\platform_net_socket.o: ..\USER\include.h
+..\obj\platform_net_socket.o: ..\DRIVE\inc\device_mutex.h

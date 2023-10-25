@@ -41,7 +41,16 @@
 ..\obj\ringbuf.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\obj\ringbuf.o: ..\FreeRTOS\include\task.h
 ..\obj\ringbuf.o: ..\FreeRTOS\include\list.h
+..\obj\ringbuf.o: ..\FreeRTOS\include\queue.h
+..\obj\ringbuf.o: ..\FreeRTOS\include\semphr.h
+..\obj\ringbuf.o: ..\USER\projectConfig.h
 ..\obj\ringbuf.o: ..\DRIVE\inc\USART.h
 ..\obj\ringbuf.o: ..\USER\include.h
 ..\obj\ringbuf.o: ..\DRIVE\inc\USART.h
 ..\obj\ringbuf.o: ..\DRIVE\inc\ringbuf.h
+..\obj\ringbuf.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\ringbuf.o: ..\USER\include.h
+..\obj\ringbuf.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\ringbuf.o: ..\DRIVE\inc\device_mutex.h
+..\obj\ringbuf.o: ..\USER\include.h
+..\obj\ringbuf.o: ..\DRIVE\inc\device_mutex.h

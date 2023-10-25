@@ -1,6 +1,6 @@
 #include "include.h"
 
-void Task1Funcation(void* param);
+esp8266_obj esp8266_dev;
 
 int main()
 {
@@ -11,22 +11,12 @@ int main()
 //	printf("Welcome to FreeRTOS\r\n");
 
 	USART3_SendArray("AT\r\n", 4);
+	esp8266_init(&esp8266_dev, "esp8266_emqt");
 //	xTaskCreate( Task1Funcation, "Task1", 100, "Task1", 1, &xHandleTask1);
 	
 		/* Start the scheduler. */
 	vTaskStartScheduler();
 
-	while (1)
-	{
-	}
 	return 0;
 }
 
-void Task1Funcation(void* param)
-{
-	while(1)
-		{
-			printf(param);
-			printf("\r\n");
-		}
-}

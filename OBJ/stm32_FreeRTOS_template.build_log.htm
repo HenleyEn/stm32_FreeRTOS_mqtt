@@ -4,91 +4,121 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 D:\OpenSource\RTOS\stm32_FreeRTOS_mqtt\PROJECT\stm32_FreeRTOS_template.uvproj
-Project File Date:  10/18/2023
+Project File Date:  10/20/2023
 
 <h2>Output:</h2>
 Build target 'stm32_FreeRTOS_template'
+compiling main.c...
 compiling USART.c...
+compiling ringbuf.c...
+compiling ESP8266_AT.c...
+compiling platform_net_socket.c...
 linking...
-Program Size: Code=13100 RO-data=336 RW-data=140 ZI-data=18660  
+Program Size: Code=14488 RO-data=336 RW-data=136 ZI-data=18680  
 FromELF: creating hex file...
 "..\OBJ\stm32_FreeRTOS_template.axf" - 0 Error(s), 0 Warning(s).
-Load "..\\OBJ\\stm32_FreeRTOS_template.axf" 
-Set JLink Project File to "D:\OpenSource\RTOS\stm32_FreeRTOS_mqtt\PROJECT\JLinkSettings.ini"
-* JLink Info: Device "STM32F103C8" selected.
- 
-JLink info:
-------------
-DLL: V7.82a, compiled Oct 31 2022 11:15:01
-Firmware: J-Link ARM-OB STM32 compiled Aug 22 2012 19:52:04
-Hardware: V7.00
-S/N : 20090928 
-Feature(s) : RDI,FlashDL,FlashBP,JFlash,GDB 
- 
-* JLink Info: InitTarget() start
-* JLink Info: InitTarget() end
-* JLink Info: Found SW-DP with ID 0x1BA01477
-* JLink Info: DPv0 detected
-* JLink Info: CoreSight SoC-400 or earlier
-* JLink Info: Scanning AP map to find all available APs
-* JLink Info: AP[1]: Stopped AP scan as end of AP map has been reached
-* JLink Info: AP[0]: AHB-AP (IDR: 0x14770011)
-* JLink Info: Iterating through AP map to find AHB-AP to use
-* JLink Info: AP[0]: Core found
-* JLink Info: AP[0]: AHB-AP ROM base: 0xE00FF000
-* JLink Info: CPUID register: 0x411FC231. Implementer code: 0x41 (ARM)
-* JLink Info: Found Cortex-M3 r1p1, Little endian.
-* JLink Info: FPUnit: 6 code (BP) slots and 2 literal slots
-* JLink Info: CoreSight components:
-* JLink Info: ROMTbl[0] @ E00FF000
-* JLink Info: [0][0]: E000E000 CID B105E00D PID 001BB000 SCS
-* JLink Info: [0][1]: E0001000 CID B105E00D PID 001BB002 DWT
-* JLink Info: [0][2]: E0002000 CID B105E00D PID 000BB003 FPB
-* JLink Info: [0][3]: E0000000 CID B105E00D PID 001BB001 ITM
-* JLink Info: [0][4]: E0040000 CID B105900D PID 001BB923 TPIU-Lite
-ROMTableAddr = 0xE00FF003
-* JLink Info: Reset: Halt core after reset via DEMCR.VC_CORERESET.
-* JLink Info: Reset: Reset device via AIRCR.SYSRESETREQ.
- 
-Target info:
-------------
-Device: STM32F103C8
-VTarget = 3.300V
-State of Pins: 
-TCK: 0, TDI: 0, TDO: 1, TMS: 0, TRES: 1, TRST: 1
-Hardware-Breakpoints: 6
-Software-Breakpoints: 8192
-Watchpoints:          4
-JTAG speed: 2000 kHz
- 
-Erase Done.
-Programming Done.
-Verify OK.
-* JLink Info: OnDisconnectTarget() start
-* JLink Info: OnDisconnectTarget() end
 </pre>
 </body>
 </html>
-erify OK.
-* JLink Info: OnDisconnectTarget() start
-* JLink Info: OnDisconnectTarget() end
-* JLink Info: OnDisconnectTarget() start
-* JLink Info: OnDisconnectTarget() end
-Hz
- 
-Erase Done.
-Programming Done.
-Verify OK.
-* JLink Info: OnDisconnectTarget() start
-* JLink Info: OnDisconnectTarget() end
-o field "read"
-                buf = ringbuf->buf[ringbuf->read];
-..\DRIVE\src\ringbuf.c: 1 warning, 13 errors
+mplate.axf" - 0 Error(s), 1 Warning(s).
+       device->cmd_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));
+..\DRIVE\src\ESP8266_AT.c(57): error:  #29: expected an expression
+                device->cmd_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));
+..\DRIVE\src\ESP8266_AT.c(58): error:  #110: expected either a definition or a tag name
+                device->data_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));;
+..\DRIVE\src\ESP8266_AT.c(58): error:  #254: type name is not allowed
+                device->data_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));;
+..\DRIVE\src\ESP8266_AT.c(58): error:  #29: expected an expression
+                device->data_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));;
+..\DRIVE\src\ESP8266_AT.c(78): warning:  #940-D: missing return statement at end of non-void function "AT_send_cmd"
+  }
+..\DRIVE\src\ESP8266_AT.c: 1 warning, 6 errors
 compiling platform_net_socket.c...
-..\DRIVE\inc\ringbuf.h(9): error:  #65: expected a ";"
-        uint8_t buf[BUF_SIZE] = {0},
-..\DRIVE\inc\ringbuf.h(12): warning:  #12-D: parsing restarts here after previous syntax error
-  }ringbuf_t, *pt_ringbuf_t;
-..\DRIVE\mqttclient\platform\FreeRTOS\platform_net_socket.c: 1 warning, 1 error
-"..\OBJ\stm32_FreeRTOS_template.axf" - 16 Error(s), 5 Warning(s).
+"..\OBJ\stm32_FreeRTOS_template.axf" - 6 Error(s), 1 Warning(s).
+Target not created
+it(esp8266_obj* device, uint8_t* device_name);
+..\DRIVE\inc\ESP8266_AT.h(40): error:  #169: expected a declaration
+  }
+..\DRIVE\inc\USART.h(5): warning:  #12-D: parsing restarts here after previous syntax error
+  void USART1_Config(uint32_t BaudRate);
+..\DRIVE\src\USART.c: 2 warnings, 5 errors
+compiling ringbuf.c...
+..\DRIVE\inc\ESP8266_AT.h(7): error:  #40: expected an identifier
+  extern "C" {
+..\DRIVE\inc\ESP8266_AT.h(7): error:  #65: expected a ";"
+  extern "C" {
+..\DRIVE\inc\ESP8266_AT.h(28): warning:  #12-D: parsing restarts here after previous syntax error
+        ringbuf_t* data_buffer;
+..\DRIVE\inc\ESP8266_AT.h(31): error:  #169: expected a declaration
+  }esp8266_obj;
+..\DRIVE\inc\ESP8266_AT.h(33): error:  #20: identifier "esp8266_obj" is undefined
+  int esp8266_init(esp8266_obj* device, uint8_t* device_name);
+..\DRIVE\inc\ESP8266_AT.h(40): error:  #169: expected a declaration
+  }
+..\DRIVE\inc\USART.h(5): warning:  #12-D: parsing restarts here after previous syntax error
+  void USART1_Config(uint32_t BaudRate);
+..\DRIVE\src\ringbuf.c: 2 warnings, 5 errors
+compiling ESP8266_AT.c...
+..\DRIVE\inc\ESP8266_AT.h(7): error:  #40: expected an identifier
+  extern "C" {
+..\DRIVE\inc\ESP8266_AT.h(7): error:  #65: expected a ";"
+  extern "C" {
+..\DRIVE\inc\ESP8266_AT.h(28): warning:  #12-D: parsing restarts here after previous syntax error
+        ringbuf_t* data_buffer;
+..\DRIVE\inc\ESP8266_AT.h(31): error:  #169: expected a declaration
+  }esp8266_obj;
+..\DRIVE\inc\ESP8266_AT.h(33): error:  #20: identifier "esp8266_obj" is undefined
+  int esp8266_init(esp8266_obj* device, uint8_t* device_name);
+..\DRIVE\inc\ESP8266_AT.h(40): error:  #169: expected a declaration
+  }
+..\DRIVE\inc\USART.h(5): warning:  #12-D: parsing restarts here after previous syntax error
+  void USART1_Config(uint32_t BaudRate);
+..\DRIVE\src\ESP8266_AT.c(24): error:  #20: identifier "esp8266_obj" is undefined
+  esp8266_obj dev_esp8266;
+..\DRIVE\src\ESP8266_AT.c(52): error:  #20: identifier "esp8266_obj" is undefined
+  int esp8266_init(esp8266_obj* device, uint8_t* device_name)
+..\DRIVE\src\ESP8266_AT.c(56): error:  #132: expression must have pointer-to-struct-or-union type
+                device->device_name = device_name;
+..\DRIVE\src\ESP8266_AT.c(57): error:  #132: expression must have pointer-to-struct-or-union type
+                device->cmd_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));
+..\DRIVE\src\ESP8266_AT.c(57): error:  #110: expected either a definition or a tag name
+                device->cmd_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));
+..\DRIVE\src\ESP8266_AT.c(57): error:  #254: type name is not allowed
+                device->cmd_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));
+..\DRIVE\src\ESP8266_AT.c(57): error:  #29: expected an expression
+                device->cmd_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));
+..\DRIVE\src\ESP8266_AT.c(58): error:  #132: expression must have pointer-to-struct-or-union type
+                device->data_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));;
+..\DRIVE\src\ESP8266_AT.c(58): error:  #110: expected either a definition or a tag name
+                device->data_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));;
+..\DRIVE\src\ESP8266_AT.c(58): error:  #254: type name is not allowed
+                device->data_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));;
+..\DRIVE\src\ESP8266_AT.c(58): error:  #29: expected an expression
+                device->data_buffer = (( struct ) ringbuf_t )*)pvPortMalloc(sizeof( ( struct ) ringbuf_t ));;
+..\DRIVE\src\ESP8266_AT.c(62): error:  #132: expression must have pointer-to-struct-or-union type
+                ringbuf_init(device->cmd_buffer);
+..\DRIVE\src\ESP8266_AT.c(63): error:  #132: expression must have pointer-to-struct-or-union type
+                ringbuf_init(device->cmd_buffer);
+..\DRIVE\src\ESP8266_AT.c(65): error:  #132: expression must have pointer-to-struct-or-union type
+                platform_mutex_init(device->mutex);
+..\DRIVE\src\ESP8266_AT.c(78): warning:  #940-D: missing return statement at end of non-void function "AT_send_cmd"
+  }
+..\DRIVE\src\ESP8266_AT.c: 3 warnings, 19 errors
+compiling platform_net_socket.c...
+..\DRIVE\inc\ESP8266_AT.h(7): error:  #40: expected an identifier
+  extern "C" {
+..\DRIVE\inc\ESP8266_AT.h(7): error:  #65: expected a ";"
+  extern "C" {
+..\DRIVE\inc\ESP8266_AT.h(28): warning:  #12-D: parsing restarts here after previous syntax error
+        ringbuf_t* data_buffer;
+..\DRIVE\inc\ESP8266_AT.h(31): error:  #169: expected a declaration
+  }esp8266_obj;
+..\DRIVE\inc\ESP8266_AT.h(33): error:  #20: identifier "esp8266_obj" is undefined
+  int esp8266_init(esp8266_obj* device, uint8_t* device_name);
+..\DRIVE\inc\ESP8266_AT.h(40): error:  #169: expected a declaration
+  }
+..\DRIVE\inc\usart.h(5): warning:  #12-D: parsing restarts here after previous syntax error
+  void USART1_Config(uint32_t BaudRate);
+..\DRIVE\mqttclient\platform\FreeRTOS\platform_net_socket.c: 2 warnings, 5 errors
+"..\OBJ\stm32_FreeRTOS_template.axf" - 40 Error(s), 12 Warning(s).
 Target not created
