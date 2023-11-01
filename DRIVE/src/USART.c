@@ -109,6 +109,23 @@ void USART3_IRQHandler(void)
 	}
 }
 
+platform_mutex_t USART3_recv_mutex;
+
+void USART3_Recv(uint8_t *buf, int timeout)
+{
+	while(1)
+	{
+		if(TRUE == ringbuf_read(buf, &USART3_RingBuf))
+		{
+			return;
+		}
+		else
+		{
+			platform_mutex_lock_timeout(&USART3_recv_mutex, timeout);
+		}
+	}
+}
+
 int fputc(int ch, FILE* f)
 {
 	USART_TypeDef* USARTx = USART1;

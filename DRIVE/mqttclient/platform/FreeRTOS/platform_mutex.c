@@ -18,6 +18,11 @@ int platform_mutex_lock(platform_mutex_t* m)
     return xSemaphoreTake(m->mutex, portMAX_DELAY);
 }
 
+int platform_mutex_lock_timeout(platform_mutex_t* m, int timeout)
+{
+    return xSemaphoreTake(m->mutex, timeout);
+}
+
 int platform_mutex_trylock(platform_mutex_t* m)
 {
     return xSemaphoreTake(m->mutex, 0);

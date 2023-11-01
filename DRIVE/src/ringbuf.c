@@ -66,21 +66,15 @@ void ringbuf_write(ringbuf_t* ringbuf, unsigned char data)
 	}
 }
 
-uint8_t ringbuf_read(ringbuf_t* ringbuf)
+uint8_t ringbuf_read(uint8_t* buf, ringbuf_t* ringbuf)
 {
-	unsigned char buf;
-
-	if(ringbuf != NULL)
+	if(ringbuf == NULL || ringbuf_empty(ringbuf) == TRUE)
 	{
-		if(ringbuf_empty(ringbuf) != TRUE)
-		{
-			(ringbuf->read) = ((ringbuf->read) + 1) % BUF_SIZE;
-			buf = ringbuf->buf[ringbuf->read];
-			return buf;
-		}
-		else
 			return FALSE; 
 	}
-	else
-		return FALSE;	
+	
+	(ringbuf->read) = ((ringbuf->read) + 1) % BUF_SIZE;
+	*buf = ringbuf->buf[ringbuf->read];
+	return TRUE;
+	
 }

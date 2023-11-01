@@ -2,6 +2,7 @@
 ..\obj\esp8266_at.o: ..\USER\include.h
 ..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
+..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdarg.h
 ..\obj\esp8266_at.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\esp8266_at.o: ..\MDK_ARM\core_cm3.h
 ..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
@@ -44,6 +45,7 @@
 ..\obj\esp8266_at.o: ..\FreeRTOS\include\queue.h
 ..\obj\esp8266_at.o: ..\FreeRTOS\include\semphr.h
 ..\obj\esp8266_at.o: ..\USER\projectConfig.h
+..\obj\esp8266_at.o: ..\DRIVE\HAL\hal_at.h
 ..\obj\esp8266_at.o: ..\DRIVE\inc\USART.h
 ..\obj\esp8266_at.o: ..\USER\include.h
 ..\obj\esp8266_at.o: ..\DRIVE\inc\USART.h
@@ -51,6 +53,4 @@
 ..\obj\esp8266_at.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\esp8266_at.o: ..\USER\include.h
 ..\obj\esp8266_at.o: ..\DRIVE\inc\ESP8266_AT.h
-..\obj\esp8266_at.o: ..\DRIVE\inc\device_mutex.h
-..\obj\esp8266_at.o: ..\USER\include.h
-..\obj\esp8266_at.o: ..\DRIVE\inc\device_mutex.h
+..\obj\esp8266_at.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h

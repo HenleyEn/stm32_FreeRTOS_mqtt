@@ -39,6 +39,7 @@
 "..\obj\usart.o"
 "..\obj\ringbuf.o"
 "..\obj\esp8266_at.o"
+"..\obj\hal_at.o"
 "..\obj\mqtt_list.o"
 "..\obj\random.o"
 "..\obj\mqttconnectclient.o"

@@ -2,6 +2,7 @@
 ..\obj\main.o: ..\USER\include.h
 ..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
+..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdarg.h
 ..\obj\main.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\main.o: ..\MDK_ARM\core_cm3.h
 ..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
@@ -44,6 +45,7 @@
 ..\obj\main.o: ..\FreeRTOS\include\queue.h
 ..\obj\main.o: ..\FreeRTOS\include\semphr.h
 ..\obj\main.o: ..\USER\projectConfig.h
+..\obj\main.o: ..\DRIVE\HAL\hal_at.h
 ..\obj\main.o: ..\DRIVE\inc\USART.h
 ..\obj\main.o: ..\USER\include.h
 ..\obj\main.o: ..\DRIVE\inc\USART.h
@@ -51,6 +53,4 @@
 ..\obj\main.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\main.o: ..\USER\include.h
 ..\obj\main.o: ..\DRIVE\inc\ESP8266_AT.h
-..\obj\main.o: ..\DRIVE\inc\device_mutex.h
-..\obj\main.o: ..\USER\include.h
-..\obj\main.o: ..\DRIVE\inc\device_mutex.h
+..\obj\main.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h

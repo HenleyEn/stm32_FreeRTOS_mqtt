@@ -18,6 +18,7 @@
 ..\obj\platform_net_socket.o: ..\USER\include.h
 ..\obj\platform_net_socket.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\platform_net_socket.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
+..\obj\platform_net_socket.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdarg.h
 ..\obj\platform_net_socket.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\platform_net_socket.o: ..\MDK_ARM\core_cm3.h
 ..\obj\platform_net_socket.o: ..\MDK_ARM\system_stm32f10x.h
@@ -51,11 +52,10 @@
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\queue.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\semphr.h
 ..\obj\platform_net_socket.o: ..\USER\projectConfig.h
+..\obj\platform_net_socket.o: ..\DRIVE\HAL\hal_at.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\USART.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\platform_net_socket.o: ..\USER\include.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\ESP8266_AT.h
-..\obj\platform_net_socket.o: ..\DRIVE\inc\device_mutex.h
-..\obj\platform_net_socket.o: ..\USER\include.h
-..\obj\platform_net_socket.o: ..\DRIVE\inc\device_mutex.h
+..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
