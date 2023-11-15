@@ -1,137 +1,21 @@
 #include "include.h"
+#include "ESP8266_AT.h"
 
-
-#if defined	ESP8266_USING
+#if defined		ESP8266_USING
 
 
 #define AT_OK	0
 #define AT_ERR	1
+#define AT_PACK_FULL	3
 
 #define WIFI_SSID	"1"
 #define WIFI_PASSWORD	"1"
-
-
-esp8266_obj dev_esp8266;
-
-/*
-int set_wifi_info(esp8266_obj* device, uint8_t* ssid, uint8_t* password)
-{
-	if(device != NULL)
-	{
-		device->wifi_info->wifi_ssid = ssid;
-		device->wifi_info->wifi_password = password;
-		return TRUE;
-	}
-
-	return FALSE;
-}
-*/
-
-static AT_Status set_at_status(esp8266_obj* device, AT_Status status)
-{
-	if(device != NULL)
-	{
-		device->status = status;
-		return status;
-	}
-	return AT_STATUS_ERROR;
-}
-
-static AT_Status get_at_status(esp8266_obj* device)
-{
-	if(device != NULL)
-	{
-		return device->status;
-	}
-	return AT_STATUS_ERROR;
-}
-
-int esp8266_init(esp8266_obj* device, uint8_t* device_name)
-{
-	if(device != NULL)
-	{
-		if(device_name != NULL)
-		{
-			device->device_name = device_name;
-			device->cmd_buffer = (at_response*)pvPortMalloc(sizeof(at_response));
-			device->data_buffer = (ringbuf_t*)pvPortMalloc(sizeof(ringbuf_t));
-			device->wifi_info = (wifi_info_t*)pvPortMalloc(sizeof(wifi_info_t));
-			device->mutex = (platform_mutex_t*)pvPortMalloc(sizeof(platform_mutex_t));
-			
-//			ringbuf_init(device->cmd_buffer);
-			ringbuf_init(device->data_buffer);
-
-			platform_mutex_init(device->mutex);
-			platform_mutex_lock(device->mutex);//mutex = 0,then it can block and wait
-			device->status = AT_STATUS_INIT;
-			return TRUE;	
-		}
-		return FALSE;
-	}
-
-	return FALSE;
-}
-int esp8266_destory(esp8266_obj* device)
-{
-	if(device != NULL)
-	{
-		vPortFree(device->cmd_buffer);
-		vPortFree(device->data_buffer);
-		vPortFree(device->wifi_info);
-		vPortFree(device->mutex);
-
-		vPortFree(device);
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-
-int AT_send_cmd(esp8266_obj* device, uint8_t *str, int str_len, int timeout)
-{
-	int ret;
-	AT_Status status;
-
-	status = get_at_status(device);
-	
-	HAL_AT_send_cmd(str, str_len);
-	HAL_AT_send_cmd("\r\n", 2);
-
-	/*
-	 *	status:
-	 *			0: OK
-	 *			1: ERROR
-	 *			-1: TIMEOUT
-	 */
-	ret = platform_mutex_lock_timeout(device->mutex, timeout);
-	if(ret && status != AT_STATUS_INIT)
-	{
-		if(status == AT_STATUS_OK)
-		{
-			
-		}
-		else if(status == AT_STATUS_ERROR)
-		{
-			
-		}
-		else if(status == AT_STATUS_TIMEOUT)
-		{
-			
-		}
-		else
-		{
-		}
-	}
-	return TRUE;
-	
-}
 
 at_response_t at_create_resp(int buf_size, int line_num, int timeout)
 {
 	at_response_t resp;
 
-	resp = (at_response_t)pvPortCalloc(1, sizeof(at_response));
+	resp = (at_response_t)pvPortCalloc(1, sizeof(struct at_response));
 
 	if(resp == NULL)
 	{
@@ -154,6 +38,7 @@ at_response_t at_create_resp(int buf_size, int line_num, int timeout)
 	return resp;
 }
 
+
 void at_delete_resp(at_response_t resp)
 {
 	if (resp && resp->buf)
@@ -166,44 +51,6 @@ void at_delete_resp(at_response_t resp)
 		vPortFree(resp);
 		resp = NULL;
 	}
-}
-
-int AT_send_obj_cmd(esp8266_obj* device, at_response_t resp, uint8_t *cmd)
-{
-	int ret = AT_OK;
-	
-	if(device == NULL)
-	{
-		return -AT_ERR;
-	}
-
-	platform_mutex_lock_timeout(device->mutex, portMAX_DELAY);
-
-	device->status = AT_RESP_OK;
-	device->cmd_buffer = resp;
-
-	if (resp != NULL)
-	{
-		resp->buf_len = 0;
-		resp->line_counts = 0;
-	}
-	
-	HAL_AT_send_cmd(cmd, strlen(cmd));
-	HAL_AT_send_cmd("\r\n", 2);
-
-	if(resp != NULL)
-	{
-		if(device->status != AT_RESP_OK)
-		{
-			ret = -AT_ERR;
-		}
-	}
-
-	device->cmd_buffer = NULL;
-
-	platform_mutex_unlock(device->mutex);
-
-	return ret;
 }
 
 
@@ -265,20 +112,433 @@ int resp_parse_line_args(at_response_t resp, int resp_line, const char *resp_exp
     return resp_args_num;
 }
 
-void AT_recv_cmd_task(void* param)
+int at_obj_set_urc_table(esp8266_obj_t device,  struct at_urc *urc_table, int urc_table_size)
 {
-	char buf[100];
-	int i;
+	int idx;
+
+	if(device == NULL)
+	{
+		printf("at_obj_set_urc_table is ERROR\r\n");
+		return -AT_ERR;
+	}
+	
+	for(idx = 0; idx < urc_table_size; idx++)
+	{
+		 configASSERT(urc_table[idx].begin_str);
+		 configASSERT(urc_table[idx].end_str);
+	}
+
+	if(device->urc_table_size == 0)
+	{
+		device->urc_table = (at_urc_table_t) pvPortCalloc(1, sizeof(struct at_urc_table));
+		
+		if (device->urc_table == NULL)
+		{
+			return -AT_ERR;
+		}
+
+		device->urc_table[0].urc = urc_table;
+		device->urc_table[0].urc_size = urc_table_size;
+		device->urc_table_size++;
+	}
+	else
+	{
+
+		struct at_urc_table *old_urc_table = NULL;
+		int old_table_size = device->urc_table_size * sizeof(struct at_urc_table);
+
+		old_urc_table = (struct at_urc_table *) pvPortMalloc(old_table_size);
+		if (old_urc_table == NULL)
+		{
+		return -AT_ERR;
+		}
+		memcpy(old_urc_table, device->urc_table, old_table_size);
+
+		/* realloc urc table space */
+		device->urc_table = (struct at_urc_table *) pvPortRealloc(device->urc_table,
+		old_table_size + sizeof(struct at_urc_table));
+		
+		if (device->urc_table == NULL)
+		{
+			vPortFree(old_urc_table);
+			return -AT_ERR;
+		}
+		
+		memcpy(device->urc_table, old_urc_table, old_table_size);
+		
+		device->urc_table[device->urc_table_size].urc = urc_table;
+		device->urc_table[device->urc_table_size].urc_size = urc_table_size;
+		device->urc_table_size++;
+
+		vPortFree(old_urc_table);
+	}
+
+	return AT_OK;
+	
+}
+
+static int get_IPD(char	*buf)
+{
+	if(strstr(buf, "+IPD"))
+		return 1;
+	else
+		return 0;
+}
+
+int get_cmd_recv(char *buf)
+{
+	if(strstr(buf, "OK\r\n"))
+		return 0;
+	else if(strstr(buf, "ERROR\r\n"))
+		return 1;
+	else if(strstr(buf, "+IPD"))
+		return 2;
+	else
+		return -AT_ERR;
+}
+/*
+static  struct at_urc urc_table[3] =
+{
+	{"OK", 		"\r\n", 	at_target_OK},
+	{"ERROR", 	"\r\n", 	at_target_ERR},
+	{"+IPD", 	"\r\n", 	at_target_IPD},
+};
+*/
+
+int esp8266_init(esp8266_obj_t device, uint8_t* device_name)
+{
+	if(device != NULL)
+	{
+		if(device_name != NULL)
+		{
+			device->device_name = device_name;
+			
+			device->cmd_buffer = (at_response_t)pvPortMalloc(sizeof(struct at_response));
+			device->data_buffer = (ptr_ringbuf_t)pvPortMalloc(sizeof(struct ringbuf));
+			device->wifi_info = (wifi_info_t)pvPortMalloc(sizeof(struct wifi_info));
+			
+			device->mutex = (platform_mutex_t*)pvPortMalloc(sizeof(platform_mutex_t));
+			device->resp_semphr = (platform_semaphore_t)pvPortMalloc(sizeof(struct platform_semaphore));
+			
+			ringbuf_init(device->data_buffer);
+			platform_semaphore_init(device->resp_semphr, 100, 0);
+
+			platform_mutex_init(device->mutex);
+			platform_mutex_lock(device->mutex);//mutex = 0,then it can block and wait
+
+			return TRUE;	
+		}
+		return FALSE;
+	}
+
+	return FALSE;
+}
+
+int esp8266_destory(esp8266_obj_t device)
+{
+	if(device != NULL)
+	{
+		vPortFree(device->cmd_buffer);
+		vPortFree(device->data_buffer);
+		vPortFree(device->wifi_info);
+		vPortFree(device->mutex);
+		vPortFree(device->resp_semphr);
+		
+		vPortFree(device);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+static const struct at_urc *get_urc_obj(esp8266_obj_t device)
+{
+	int i,j;
+	int begin_buf_len, end_buf_len;
+
+	int buffer_len_size;
+	char *buffer = NULL;
+
+	const struct at_urc *urc = NULL;
+	struct at_urc_table *urc_table = NULL;
+
+	if(device->urc_table == NULL)
+	{
+		printf("urc is NULL\r\n");
+		return NULL;
+	}
+
+	buffer = device->recv_line_buf;
+	buffer_len_size = device->recv_line_len;
+
+	/* set urc*/
+	for(i = 0; i < device->urc_table_size; i++)
+	{
+		for(j = 0; j < device->urc_table[i].urc_size; j++)
+		{
+			urc_table = device->urc_table + i;
+			urc = urc_table->urc + j;
+
+			begin_buf_len = strlen(urc->begin_str);
+			end_buf_len = strlen(urc->end_str);
+
+			if(buffer_len_size < (begin_buf_len + end_buf_len))
+			{
+				continue;
+			}
+
+			/* 
+			 * compare buffer and return urc 
+			 * if strncmp  < 0 or >0, 
+			 * !strncmp = 0  
+			 * if strncmp = 0;
+			 * !strncmp = 1
+			 */
+			if(begin_buf_len ? !strncmp(buffer, urc->begin_str, begin_buf_len) : 1
+				&& end_buf_len ? !strncmp(buffer + buffer_len_size - end_buf_len, urc->end_str, end_buf_len) : 1)
+			{
+				return urc;
+			}
+		}
+		
+	}
+
+	return NULL;
+}
+
+static int device_read_buf(esp8266_obj_t device, int offset, void* data_buf, int size)
+{
+	int ret;
+	if(device == NULL)
+	{
+		return AT_ERR;
+	}
+
+	ret = HAL_AT_read_buf(device, offset, data_buf, size);
+
+	return ret;
+}
+
+static int at_client_getchar(esp8266_obj_t device, char *ch, int timeout)
+{
+    int result = AT_OK;
 
 	while(1)
 	{
-		HAL_AT_recv(&buf[i], portMAX_DELAY);
-		buf[i+1] = '\0';
-		i++;
-		
-		if((i != 0) && (buf[i-1] == '\r') && (buf[i] == '\n'))
+	    result = platform_mutex_lock_timeout(device->mutex, portMAX_DELAY);
+	    ;
+		if (result != AT_OK)
 		{
+		    return result;
 		}
+		if(device_read_buf(device, 0, ch, 1) == 1)
+		{
+		    return AT_OK;
+		}
+	}
+
+}
+
+
+static int at_recv_readline(esp8266_obj_t device)
+{
+    int read_len = 0;
+    char ch = 0, last_ch = 0;
+    int is_full = FALSE;
+
+	/* init buf */
+    memset(device->recv_line_buf, 0x00, device->recv_buffer_size);
+    device->recv_line_len = 0;
+
+	/* get data or get newline */
+    while (1)
+    {
+        at_client_getchar(device, &ch, portMAX_DELAY);
+
+		
+        if (read_len < device->recv_buffer_size)
+        {
+            device->recv_line_buf[read_len++] = ch;
+            device->recv_line_len = read_len;
+        }
+        else
+        {
+            is_full = TRUE;
+        }
+
+        /* is newline or URC data */
+        if ((ch == '\n' && last_ch == '\r') 
+        	|| (device->end_sign != 0 && ch == device->end_sign)
+            || get_urc_obj(device))
+        {
+            if (is_full)
+            {
+                printf("read line failed. The line data length is out of buffer size(%d)!", device->recv_buffer_size);
+                memset(device->recv_line_buf, 0x00, device->recv_buffer_size);
+                device->recv_line_len = 0;
+                return -AT_PACK_FULL;
+            }
+            break;
+        }
+        last_ch = ch;
+    }
+
+    return read_len;
+}
+
+static void client_parser(esp8266_obj_t device)
+{
+    const struct at_urc *urc;
+
+    while(1)
+    {
+        if (at_recv_readline(device) > 0)
+        {
+            if ((urc = get_urc_obj(device)) != NULL)
+            {
+                /* current receive is request, try to execute related operations */
+                if (urc->func != NULL)
+                {
+                    urc->func(device, device->recv_line_buf, device->recv_line_len);
+                }
+            }
+            else if (device->resp != RT_NULL)
+            {
+                at_response_t resp = client->resp;
+
+                /* current receive is response */
+                client->recv_line_buf[client->recv_line_len - 1] = '\0';
+                if (resp->buf_len + client->recv_line_len < resp->buf_size)
+                {
+                    /* copy response lines, separated by '\0' */
+                    rt_memcpy(resp->buf + resp->buf_len, client->recv_line_buf, client->recv_line_len);
+
+                    /* update the current response information */
+                    resp->buf_len += client->recv_line_len;
+                    resp->line_counts++;
+                }
+                else
+                {
+                    client->resp_status = AT_RESP_BUFF_FULL;
+                    LOG_E("Read response buffer failed. The Response buffer size is out of buffer size(%d)!", resp->buf_size);
+                }
+                /* check response result */
+                if (rt_memcmp(client->recv_line_buf, AT_RESP_END_OK, rt_strlen(AT_RESP_END_OK)) == 0
+                        && resp->line_num == 0)
+                {
+                    /* get the end data by response result, return response state END_OK. */
+                    client->resp_status = AT_RESP_OK;
+                }
+                else if (rt_strstr(client->recv_line_buf, AT_RESP_END_ERROR)
+                        || (rt_memcmp(client->recv_line_buf, AT_RESP_END_FAIL, rt_strlen(AT_RESP_END_FAIL)) == 0))
+                {
+                    client->resp_status = AT_RESP_ERROR;
+                }
+                else if (resp->line_counts == resp->line_num && resp->line_num)
+                {
+                    /* get the end data by response line, return response state END_OK.*/
+                    client->resp_status = AT_RESP_OK;
+                }
+                else
+                {
+                    continue;
+                }
+
+                client->resp = RT_NULL;
+                rt_sem_release(client->resp_notice);
+            }
+            else
+            {
+//                log_d("unrecognized line: %.*s", client->recv_line_len, client->recv_line_buf);
+            }
+        }
+    }
+}
+
+void at_init(esp8266_obj_t device)
+{
+	esp8266_init(device, "ESP8266");
+//	at_obj_set_urc_table(device, urc_table, sizeof(urc_table)/sizeof(urc_table[0]));
+}
+
+int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
+{
+	int ret = AT_OK;
+	
+	if(device == NULL)
+	{
+		return -AT_ERR;
+	}
+
+	device->status = AT_RESP_OK;
+	device->cmd_buffer = resp;
+	
+	if (resp != NULL)
+	{
+		resp->buf_len = 0;
+		resp->line_counts = 0;
+	}
+
+	HAL_AT_send_cmd(cmd, strlen(cmd));
+	HAL_AT_send_cmd("\r\n", 2);	
+	
+	platform_mutex_lock_timeout(device->mutex, portMAX_DELAY);
+
+	if(resp != NULL)
+	{
+		if(device->status != AT_RESP_OK)
+		{
+			printf("execute command (%.*s) failed!", cmd);
+			ret = -AT_ERR;
+		}
+	}
+
+	device->cmd_buffer = NULL;
+
+	platform_mutex_unlock(device->mutex);
+
+	return ret;
+}
+
+#define AT_RECV_SIZE	100
+
+void AT_recv_cmd_task(void* param)
+{
+	char buf[AT_RECV_SIZE];
+	int i = 0;
+	
+	while(1)
+	{
+		HAL_AT_recv(&buf[i], portMAX_DELAY);
+		if(i != 0)
+		{
+			buf[i+1] = '\0';
+			
+			if(strstr(buf, "OK"))
+			{
+				printf("OK\r\n");
+				i = 0;
+			}
+			else if(get_IPD(buf))
+			{
+				printf("get IPD\r\n");
+				i = 0;
+			}
+			else
+			{
+				i++;
+			}
+		}
+		else
+		{
+			i++;
+		}
+		
+		if(i >= AT_RECV_SIZE)
+		{
+			i = 0;
+		}
+		
+		vTaskDelay(3);
 	}
 }
 

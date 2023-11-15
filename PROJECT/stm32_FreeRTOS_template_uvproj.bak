@@ -109,7 +109,7 @@
           <SimDlgDllArguments>-pSTM32F103C8</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
           <TargetDllArguments></TargetDllArguments>
-          <TargetDlgDll>TARMSTM.DLL</TargetDlgDll>
+          <TargetDlgDll>DARMSTM.DLL</TargetDlgDll>
           <TargetDlgDllArguments>-pSTM32F103C8</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
@@ -152,7 +152,7 @@
             <CpuDllArguments></CpuDllArguments>
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
+            <InitializationFile>.\debug.ini</InitializationFile>
           </SimDlls>
           <TargetDlls>
             <CpuDll></CpuDll>
@@ -169,12 +169,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -364,7 +364,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F10xLIB\inc;..\MDK_ARM;..\USER;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\DRIVE\inc;..\DRIVE\mqttclient\common;..\DRIVE\mqttclient\mqtt;..\DRIVE\mqttclient\mqttclient;..\DRIVE\mqttclient\network;..\DRIVE\mqttclient\platform\FreeRTOS;..\DRIVE\mqttclient\test</IncludePath>
+              <IncludePath>..\STM32F10xLIB\inc;..\MDK_ARM;..\USER;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\DRIVE\inc;..\DRIVE\mqttclient\common;..\DRIVE\mqttclient\mqtt;..\DRIVE\mqttclient\mqttclient;..\DRIVE\mqttclient\network;..\DRIVE\mqttclient\platform\FreeRTOS;..\DRIVE\mqttclient\test;..\DRIVE\HAL</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -651,6 +651,16 @@
               <FileName>ESP8266_AT.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\DRIVE\src\ESP8266_AT.c</FilePath>
+            </File>
+            <File>
+              <FileName>hal_at.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVE\HAL\hal_at.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_manager.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVE\src\task_manager.c</FilePath>
             </File>
           </Files>
         </Group>

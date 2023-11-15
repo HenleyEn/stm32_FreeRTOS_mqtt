@@ -33,8 +33,25 @@ int platform_mutex_unlock(platform_mutex_t* m)
     return xSemaphoreGive(m->mutex);
 }
 
+int platform_mutex_unlock_from_isr(platform_mutex_t* m)
+{
+	static BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    xSemaphoreGiveFromISR(m->mutex, &xHigherPriorityTaskWoken);
+	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+	return pdTRUE;
+}
+
 int platform_mutex_destroy(platform_mutex_t* m)
 {
     vSemaphoreDelete(m->mutex);
     return 0;
 }
+
+
+int platform_semaphore_init(struct platform_semaphore *semphr, int max_count, int init_count)
+{
+	configASSERT(max_count < init_count);
+   	semphr->semaphore = xSemaphoreCreateCounting(max_count, init_count);
+    return 0;
+}
+

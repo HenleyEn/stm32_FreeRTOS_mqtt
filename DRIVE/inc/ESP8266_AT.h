@@ -1,24 +1,17 @@
 #ifndef ESP8266_AT_H
 #define ESP8266_AT_H
 
-#include "include.h"
+#include "platform_mutex.h"
+#include "ringbuf.h"
 
-typedef enum
-{
-	AT_STATUS_TIMEOUT = -2,
-	AT_STATUS_ERROR = -1,
-	AT_STATUS_OK = 0,
-	
-	AT_STATUS_INIT = 2,
-}AT_Status;
-
-typedef enum
+enum at_status
 {
     AT_STATUS_UNINITIALIZED = 0,
     AT_STATUS_INITIALIZED,
     AT_STATUS_CLI,
 
-}at_status;
+};
+typedef enum at_status *at_status_t;
 
 enum at_resp_status
 {
@@ -27,18 +20,16 @@ enum at_resp_status
      AT_RESP_TIMEOUT = -2,             /* AT response is timeout */
      AT_RESP_BUFF_FULL= -3,            /* AT response buffer is full */
 };
- typedef enum at_resp_status at_resp_status_t;
+typedef enum at_resp_status at_resp_status_t;
 
-
-typedef at_status *at_status_t;
-
-typedef struct
+struct wifi_info
 {
 	uint8_t *wifi_ssid;
 	uint8_t *wifi_password;
-}wifi_info_t;
+};
+typedef struct wifi_info *wifi_info_t;
 
-typedef struct
+struct at_response
 {
 	char *buf;
 	/* the maximum response buffer size */
@@ -57,35 +48,62 @@ typedef struct
 	at_status_t response_status;
 	/* the maximum response time */
 	int timeout;
-}at_response;
+};
 
-typedef at_response *at_response_t;
+typedef struct at_response *at_response_t;
 
-typedef struct
+struct at_urc
+{
+	const char *begin_str;
+	const char *end_str;
+
+	void (*func)(esp8266_obj_t device, char* recv_line_buf, int recv_line_len);
+};
+
+typedef  struct at_urc *at_urc_t;
+
+struct at_urc_table
+{
+	int urc_size;
+	 at_urc_t urc;
+};
+typedef struct at_urc_table *at_urc_table_t;
+
+struct esp8266_obj
 {
 	uint8_t *device_name;
-	wifi_info_t* wifi_info;
+	wifi_info_t wifi_info;
+	char end_sign;
 	
-	at_response* cmd_buffer;
+	at_response_t cmd_buffer;
 	at_resp_status_t status;
 	
-	ringbuf_t* data_buffer;
+	ptr_ringbuf_t data_buffer;
+	char *resp_buf;
+
 	platform_mutex_t* mutex;
+	platform_mutex_t* rx_mutex;
+
+	char *recv_line_buf;
+	int recv_line_len;
+	int recv_buffer_size;
+
+	struct platform_semaphore *resp_semphr;
+	int urc_table_size;
+	at_urc_table_t urc_table;
 	
-}esp8266_obj;
+};
+typedef struct esp8266_obj *esp8266_obj_t;
 
-int esp8266_init(esp8266_obj* device, uint8_t* device_name);
-int esp8266_destory(esp8266_obj* device);
-int AT_send_cmd(esp8266_obj* device, uint8_t *str, int str_len, int timeout);
-int AT_recv(void);
-int AT_ack(void);
+int esp8266_init(esp8266_obj_t device, uint8_t* device_name);
+int esp8266_destory(esp8266_obj_t device);
+void AT_recv_cmd_task(void* param);
 
-
+void at_init(esp8266_obj_t device);
 at_response_t at_create_resp(int buf_size, int line_num, int timeout);
 void at_delete_resp(at_response_t resp);
-int AT_send_obj_cmd(esp8266_obj* device, at_response_t resp, uint8_t *cmd);
+int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd);
 const char* resp_get_line(at_response_t resp, int resp_line);
 int resp_parse_line_args(at_response_t resp, int resp_line, const char *resp_expr, ...);
-
 
 #endif

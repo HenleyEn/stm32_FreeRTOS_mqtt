@@ -3,6 +3,7 @@
 ..\obj\hal_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\hal_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
 ..\obj\hal_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdarg.h
+..\obj\hal_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\assert.h
 ..\obj\hal_at.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\hal_at.o: ..\MDK_ARM\core_cm3.h
 ..\obj\hal_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
@@ -45,12 +46,11 @@
 ..\obj\hal_at.o: ..\FreeRTOS\include\queue.h
 ..\obj\hal_at.o: ..\FreeRTOS\include\semphr.h
 ..\obj\hal_at.o: ..\USER\projectConfig.h
+..\obj\hal_at.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
+..\obj\hal_at.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
+..\obj\hal_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
 ..\obj\hal_at.o: ..\DRIVE\HAL\hal_at.h
-..\obj\hal_at.o: ..\DRIVE\inc\USART.h
-..\obj\hal_at.o: ..\USER\include.h
-..\obj\hal_at.o: ..\DRIVE\inc\USART.h
-..\obj\hal_at.o: ..\DRIVE\inc\ringbuf.h
-..\obj\hal_at.o: ..\DRIVE\inc\ESP8266_AT.h
-..\obj\hal_at.o: ..\USER\include.h
 ..\obj\hal_at.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\hal_at.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
+..\obj\hal_at.o: ..\DRIVE\inc\ringbuf.h
+..\obj\hal_at.o: ..\DRIVE\inc\USART.h

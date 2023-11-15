@@ -40,6 +40,7 @@
 "..\obj\ringbuf.o"
 "..\obj\esp8266_at.o"
 "..\obj\hal_at.o"
+"..\obj\task_manager.o"
 "..\obj\mqtt_list.o"
 "..\obj\random.o"
 "..\obj\mqttconnectclient.o"
@@ -60,6 +61,8 @@
 "..\obj\platform_net_socket.o"
 "..\obj\platform_thread.o"
 "..\obj\platform_timer.o"
+"..\obj\segger_rtt.o"
+"..\obj\segger_rtt_printf.o"
 --library_type=microlib --strict --scatter "..\OBJ\stm32_FreeRTOS_template.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

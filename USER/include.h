@@ -1,6 +1,12 @@
+#ifndef _INCLUDE_H
+#define _INCLUDE_H
+
+
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <assert.h>
+
 #include "stm32f10x.h"                  // Device header
 
 #include "FreeRTOS.h"
@@ -11,16 +17,12 @@
 
 #include "projectConfig.h"
 
-
-#include "hal_at.h"
-
-#include "USART.h"
-#include "ringbuf.h"
-#include "ESP8266_AT.h"
-#include "platform_mutex.h"
+#include "SEGGER_RTT.h"
 
 
 
+
+#endif
 
 
 

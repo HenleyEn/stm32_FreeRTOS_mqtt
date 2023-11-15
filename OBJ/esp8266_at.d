@@ -3,6 +3,7 @@
 ..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
 ..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
 ..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdarg.h
+..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\assert.h
 ..\obj\esp8266_at.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\esp8266_at.o: ..\MDK_ARM\core_cm3.h
 ..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
@@ -45,12 +46,9 @@
 ..\obj\esp8266_at.o: ..\FreeRTOS\include\queue.h
 ..\obj\esp8266_at.o: ..\FreeRTOS\include\semphr.h
 ..\obj\esp8266_at.o: ..\USER\projectConfig.h
-..\obj\esp8266_at.o: ..\DRIVE\HAL\hal_at.h
-..\obj\esp8266_at.o: ..\DRIVE\inc\USART.h
-..\obj\esp8266_at.o: ..\USER\include.h
-..\obj\esp8266_at.o: ..\DRIVE\inc\USART.h
-..\obj\esp8266_at.o: ..\DRIVE\inc\ringbuf.h
-..\obj\esp8266_at.o: ..\DRIVE\inc\ESP8266_AT.h
-..\obj\esp8266_at.o: ..\USER\include.h
+..\obj\esp8266_at.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
+..\obj\esp8266_at.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
+..\obj\esp8266_at.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
 ..\obj\esp8266_at.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\esp8266_at.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
+..\obj\esp8266_at.o: ..\DRIVE\inc\ringbuf.h

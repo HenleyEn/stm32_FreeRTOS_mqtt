@@ -1,10 +1,11 @@
 #include "include.h"
+#include "ringbuf.h"
 
 
-static uint8_t ringbuf_empty(ringbuf_t* ringbuf);
-static uint8_t ringbuf_full(ringbuf_t* ringbuf);
+static uint8_t ringbuf_empty(ptr_ringbuf_t ringbuf);
+static uint8_t ringbuf_full(ptr_ringbuf_t ringbuf);
 
-void ringbuf_init(ringbuf_t* ringbuf)
+void ringbuf_init(ptr_ringbuf_t ringbuf)
 {
 	ringbuf->read = 0;
 	ringbuf->write = 0;
@@ -24,7 +25,7 @@ int ringbuf_flush(ringbuf_t* ringbuf)
 }
 */
 
-static uint8_t ringbuf_empty(ringbuf_t* ringbuf)
+static uint8_t ringbuf_empty(ptr_ringbuf_t ringbuf)
 {
 	if(ringbuf != NULL)
 	{
@@ -38,7 +39,7 @@ static uint8_t ringbuf_empty(ringbuf_t* ringbuf)
 
 }
 
-static uint8_t ringbuf_full(ringbuf_t* ringbuf)
+static uint8_t ringbuf_full(ptr_ringbuf_t ringbuf)
 {
 	uint8_t full_flag;
  	if(ringbuf != NULL)
@@ -54,7 +55,7 @@ static uint8_t ringbuf_full(ringbuf_t* ringbuf)
 
 }
 
-void ringbuf_write(ringbuf_t* ringbuf, unsigned char data)
+void ringbuf_write(ptr_ringbuf_t ringbuf, unsigned char data)
 {
 	if(ringbuf != NULL)
 	{
@@ -66,15 +67,15 @@ void ringbuf_write(ringbuf_t* ringbuf, unsigned char data)
 	}
 }
 
-uint8_t ringbuf_read(uint8_t* buf, ringbuf_t* ringbuf)
+uint8_t ringbuf_read(uint8_t* buf, ptr_ringbuf_t ringbuf)
 {
 	if(ringbuf == NULL || ringbuf_empty(ringbuf) == TRUE)
 	{
 			return FALSE; 
 	}
 	
-	(ringbuf->read) = ((ringbuf->read) + 1) % BUF_SIZE;
 	*buf = ringbuf->buf[ringbuf->read];
+	(ringbuf->read) = ((ringbuf->read) + 1) % BUF_SIZE;
 	return TRUE;
 	
 }
