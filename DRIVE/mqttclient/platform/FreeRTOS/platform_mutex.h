@@ -32,6 +32,10 @@ int platform_mutex_unlock(platform_mutex_t* m);
 int platform_mutex_destroy(platform_mutex_t* m);
 
 int platform_semaphore_init(struct platform_semaphore *semphr, int max_count, int init_count);
+int platform_semphr_lock(struct platform_semaphore* semphr);
+int platform_semphr_unlock(struct platform_semaphore* semphr);
+int platform_semphr_destroy(struct platform_semaphore* semphr);
+int platform_semphr_unlock_from_isr(struct platform_semaphore* semphr);
 
 
 #endif

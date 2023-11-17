@@ -45,7 +45,12 @@ void do_create_parse_task(void)
 {
 	BaseType_t xReturn = pdPASS;					
 
-	xReturn = xTaskCreate(AT_recv_cmd_task, "recv_cmd_task", 1024, NULL, 1, &task_parse_handle);
+	xReturn = xTaskCreate((void (*)(void *param))client_parser, 
+							"client_parser", 
+							1024, 
+							&esp8266_dev, 
+							1, 
+							&task_parse_handle);
 
 	if(pdPASS == xReturn)	
 	{
@@ -87,18 +92,8 @@ void at_test(void* param)
 	if(resp != NULL)
 	{
 		AT_send_obj_cmd(&esp8266_dev, resp, "AT");
-//		AT_send_obj_cmd(&esp8266_dev, resp, "AT+CWMODE=3");
+
 		printf("resp data:\r\n");
-/*
-		if((line_buffer = resp_get_line(resp, 0)) != NULL)
-		{
-			printf("data is %s", line_buffer);
-		}
-		else
-		{
-			printf("Parse line buffer error!\r\n");
-		}
-*/
 		
 		for(int line_num = 1; line_num <= resp->line_counts; line_num++)
 		{

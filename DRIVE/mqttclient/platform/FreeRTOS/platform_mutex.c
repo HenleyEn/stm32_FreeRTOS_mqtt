@@ -55,3 +55,27 @@ int platform_semaphore_init(struct platform_semaphore *semphr, int max_count, in
     return 0;
 }
 
+int platform_semphr_lock(struct platform_semaphore* semphr)
+{
+    return xSemaphoreTake(semphr->semaphore, portMAX_DELAY);
+}
+
+int platform_semphr_unlock(struct platform_semaphore* semphr)
+{
+    return xSemaphoreGive(semphr->semaphore);
+}
+
+int platform_semphr_destroy(struct platform_semaphore* semphr)
+{
+    vSemaphoreDelete(semphr->semaphore);
+    return 0;
+}
+
+int platform_semphr_unlock_from_isr(struct platform_semaphore* semphr)
+{
+	static BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    xSemaphoreGiveFromISR(semphr->semaphore, &xHigherPriorityTaskWoken);
+	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+	return pdTRUE;
+}
+

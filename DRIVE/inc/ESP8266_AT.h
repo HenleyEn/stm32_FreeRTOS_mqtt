@@ -3,6 +3,8 @@
 
 #include "platform_mutex.h"
 #include "ringbuf.h"
+#include "at.h"
+typedef struct esp8266_obj *esp8266_obj_t;
 
 enum at_status
 {
@@ -21,13 +23,6 @@ enum at_resp_status
      AT_RESP_BUFF_FULL= -3,            /* AT response buffer is full */
 };
 typedef enum at_resp_status at_resp_status_t;
-
-struct wifi_info
-{
-	uint8_t *wifi_ssid;
-	uint8_t *wifi_password;
-};
-typedef struct wifi_info *wifi_info_t;
 
 struct at_response
 {
@@ -57,7 +52,7 @@ struct at_urc
 	const char *begin_str;
 	const char *end_str;
 
-	void (*func)(esp8266_obj_t device, char* recv_line_buf, int recv_line_len);
+	void (*func)(struct esp8266_obj *device, char* recv_line_buf, int recv_line_len);
 };
 
 typedef  struct at_urc *at_urc_t;
@@ -69,35 +64,46 @@ struct at_urc_table
 };
 typedef struct at_urc_table *at_urc_table_t;
 
+struct wifi_info
+{
+	uint8_t *wifi_ssid;
+	uint8_t *wifi_password;
+};
+typedef struct wifi_info *wifi_info_t;
+
 struct esp8266_obj
 {
+	/* devicre name */
 	uint8_t *device_name;
-	wifi_info_t wifi_info;
-	char end_sign;
-	
-	at_response_t cmd_buffer;
-	at_resp_status_t status;
-	
 	ptr_ringbuf_t data_buffer;
+	
+	char end_sign;
+
+	/* resp */
+	at_response_t resp;
+	at_resp_status_t resp_status;
+	struct platform_semaphore *resp_semphr;
+	
 	char *resp_buf;
 
 	platform_mutex_t* mutex;
-	platform_mutex_t* rx_mutex;
+	struct platform_semaphore * rx_semphr;
 
+	/* parse recv data */ 
 	char *recv_line_buf;
 	int recv_line_len;
 	int recv_buffer_size;
 
-	struct platform_semaphore *resp_semphr;
+	/* set urc_table */
 	int urc_table_size;
 	at_urc_table_t urc_table;
 	
 };
-typedef struct esp8266_obj *esp8266_obj_t;
 
 int esp8266_init(esp8266_obj_t device, uint8_t* device_name);
 int esp8266_destory(esp8266_obj_t device);
 void AT_recv_cmd_task(void* param);
+void client_parser(esp8266_obj_t device);
 
 void at_init(esp8266_obj_t device);
 at_response_t at_create_resp(int buf_size, int line_num, int timeout);

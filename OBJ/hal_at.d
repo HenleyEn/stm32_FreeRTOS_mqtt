@@ -53,4 +53,6 @@
 ..\obj\hal_at.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\hal_at.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\hal_at.o: ..\DRIVE\inc\ringbuf.h
+..\obj\hal_at.o: ..\DRIVE\inc\at.h
+..\obj\hal_at.o: ..\DRIVE\inc\printf_debug_log.h
 ..\obj\hal_at.o: ..\DRIVE\inc\USART.h

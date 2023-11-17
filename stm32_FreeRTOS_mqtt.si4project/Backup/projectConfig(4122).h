@@ -1,7 +1,0 @@
-#ifndef PROJECTCONFIG
-#define PROJECTCONFIG
-
-#define ESP8266_USING
-#define PLATFORM_MUTEX_USING
-
-#endif

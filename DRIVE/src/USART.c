@@ -119,7 +119,9 @@ void USART3_IRQHandler(void)
 			
 			ringbuf_write(&test_buf, USART_ReceiveData(USART3));
 			USART_ClearITPendingBit(USART3, USART_IT_RXNE); 
-			platform_mutex_unlock_from_isr(esp8266_dev.mutex);
+//			platform_mutex_unlock_from_isr(esp8266_dev.mutex);
+			platform_semphr_unlock_from_isr(esp8266_dev.rx_semphr);
+			
 	}
 }
 

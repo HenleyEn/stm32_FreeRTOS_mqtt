@@ -49,8 +49,11 @@
 ..\obj\task_manager.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
 ..\obj\task_manager.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
 ..\obj\task_manager.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
-..\obj\task_manager.o: ..\DRIVE\inc\task_manager.h
+..\obj\task_manager.o: ..\DRIVE\HAL\hal_at.h
 ..\obj\task_manager.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\task_manager.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\task_manager.o: ..\DRIVE\inc\ringbuf.h
+..\obj\task_manager.o: ..\DRIVE\inc\at.h
+..\obj\task_manager.o: ..\DRIVE\inc\printf_debug_log.h
+..\obj\task_manager.o: ..\DRIVE\inc\task_manager.h
 ..\obj\task_manager.o: ..\DRIVE\inc\USART.h

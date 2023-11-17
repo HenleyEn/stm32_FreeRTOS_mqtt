@@ -8,9 +8,19 @@
 #define AT_ERR	1
 #define AT_PACK_FULL	3
 
+#define AT_RESP_END_OK                 "OK"
+#define AT_RESP_END_ERROR              "ERROR"
+#define AT_RESP_END_FAIL               "FAIL"
+#define AT_END_CR_LF                   "\r\n"
+
 #define WIFI_SSID	"1"
 #define WIFI_PASSWORD	"1"
 
+/*
+ *	This function will create a response object
+ *	@param buf_size
+ *
+ */
 at_response_t at_create_resp(int buf_size, int line_num, int timeout)
 {
 	at_response_t resp;
@@ -177,33 +187,24 @@ int at_obj_set_urc_table(esp8266_obj_t device,  struct at_urc *urc_table, int ur
 	
 }
 
-static int get_IPD(char	*buf)
+static void urc_func(struct esp8266_obj *device, char* data, int data_size)
 {
-	if(strstr(buf, "+IPD"))
-		return 1;
-	else
-		return 0;
+	if (strstr(data, "OK"))
+	{
+		printf("urc OK\r\n");
+	}
+	else if (strstr(data, "ERROR"))
+	{
+		printf("urc ERROR\r\n");
+	}
 }
 
-int get_cmd_recv(char *buf)
+static struct at_urc urc_table[3] =
 {
-	if(strstr(buf, "OK\r\n"))
-		return 0;
-	else if(strstr(buf, "ERROR\r\n"))
-		return 1;
-	else if(strstr(buf, "+IPD"))
-		return 2;
-	else
-		return -AT_ERR;
-}
-/*
-static  struct at_urc urc_table[3] =
-{
-	{"OK", 		"\r\n", 	at_target_OK},
-	{"ERROR", 	"\r\n", 	at_target_ERR},
-	{"+IPD", 	"\r\n", 	at_target_IPD},
+	{"OK", 		"\r\n", 	urc_func},
+	{"ERROR", 	"\r\n", 	urc_func},
+	{"+IPD", 	"\r\n", 	urc_func},
 };
-*/
 
 int esp8266_init(esp8266_obj_t device, uint8_t* device_name)
 {
@@ -213,14 +214,17 @@ int esp8266_init(esp8266_obj_t device, uint8_t* device_name)
 		{
 			device->device_name = device_name;
 			
-			device->cmd_buffer = (at_response_t)pvPortMalloc(sizeof(struct at_response));
+			device->resp = (at_response_t)pvPortMalloc(sizeof(struct at_response));
 			device->data_buffer = (ptr_ringbuf_t)pvPortMalloc(sizeof(struct ringbuf));
-			device->wifi_info = (wifi_info_t)pvPortMalloc(sizeof(struct wifi_info));
 			
 			device->mutex = (platform_mutex_t*)pvPortMalloc(sizeof(platform_mutex_t));
+			
+			device->rx_semphr = (platform_semaphore_t)pvPortMalloc(sizeof(struct platform_semaphore));
 			device->resp_semphr = (platform_semaphore_t)pvPortMalloc(sizeof(struct platform_semaphore));
 			
 			ringbuf_init(device->data_buffer);
+			
+			platform_semaphore_init(device->rx_semphr, 100, 0);
 			platform_semaphore_init(device->resp_semphr, 100, 0);
 
 			platform_mutex_init(device->mutex);
@@ -238,18 +242,30 @@ int esp8266_destory(esp8266_obj_t device)
 {
 	if(device != NULL)
 	{
-		vPortFree(device->cmd_buffer);
+		vPortFree(device->resp);
 		vPortFree(device->data_buffer);
-		vPortFree(device->wifi_info);
 		vPortFree(device->mutex);
 		vPortFree(device->resp_semphr);
 		
 		vPortFree(device);
+		memset(device, 0x00, sizeof(struct esp8266_obj));
+		
 		return TRUE;
 	}
 
 	return FALSE;
 }
+
+static int at_rx_init(esp8266_obj_t device)
+{
+    if(device != NULL)
+    {
+		platform_semphr_unlock(device->rx_semphr);
+	    return AT_OK;
+    }
+    return -AT_ERR;
+}
+
 static const struct at_urc *get_urc_obj(esp8266_obj_t device)
 {
 	int i,j;
@@ -324,8 +340,8 @@ static int at_client_getchar(esp8266_obj_t device, char *ch, int timeout)
 
 	while(1)
 	{
-	    result = platform_mutex_lock_timeout(device->mutex, portMAX_DELAY);
-	    ;
+		printf("FuncName:%s  Line:%d\n", __func__, __LINE__);
+	    result = platform_semphr_lock(device->rx_semphr);
 		if (result != AT_OK)
 		{
 		    return result;
@@ -352,6 +368,7 @@ static int at_recv_readline(esp8266_obj_t device)
 	/* get data or get newline */
     while (1)
     {
+		printf("FuncName:%s  Line:%d\n", __func__, __LINE__);
         at_client_getchar(device, &ch, portMAX_DELAY);
 
 		
@@ -385,12 +402,17 @@ static int at_recv_readline(esp8266_obj_t device)
     return read_len;
 }
 
-static void client_parser(esp8266_obj_t device)
+/*
+ *	parse recv data.
+ *
+ */
+void client_parser(esp8266_obj_t device)
 {
     const struct at_urc *urc;
 
     while(1)
     {
+		printf("FuncName:%s  Line:%d\n", __func__, __LINE__);
         if (at_recv_readline(device) > 0)
         {
             if ((urc = get_urc_obj(device)) != NULL)
@@ -401,54 +423,55 @@ static void client_parser(esp8266_obj_t device)
                     urc->func(device, device->recv_line_buf, device->recv_line_len);
                 }
             }
-            else if (device->resp != RT_NULL)
+            else if (device->resp != NULL)
             {
-                at_response_t resp = client->resp;
+                at_response_t resp = device->resp;
 
                 /* current receive is response */
-                client->recv_line_buf[client->recv_line_len - 1] = '\0';
-                if (resp->buf_len + client->recv_line_len < resp->buf_size)
+                device->recv_line_buf[device->recv_line_len - 1] = '\0';
+                
+                if (resp->buf_len + device->recv_line_len < resp->buf_size)
                 {
                     /* copy response lines, separated by '\0' */
-                    rt_memcpy(resp->buf + resp->buf_len, client->recv_line_buf, client->recv_line_len);
+                    memcpy(resp->buf + resp->buf_len, device->recv_line_buf, device->recv_line_len);
 
                     /* update the current response information */
-                    resp->buf_len += client->recv_line_len;
+                    resp->buf_len += device->recv_line_len;
                     resp->line_counts++;
                 }
                 else
                 {
-                    client->resp_status = AT_RESP_BUFF_FULL;
-                    LOG_E("Read response buffer failed. The Response buffer size is out of buffer size(%d)!", resp->buf_size);
+                    device->resp_status = AT_RESP_BUFF_FULL;
+                    printf("Read response buffer failed. The Response buffer size is out of buffer size(%d)!", resp->buf_size);
                 }
                 /* check response result */
-                if (rt_memcmp(client->recv_line_buf, AT_RESP_END_OK, rt_strlen(AT_RESP_END_OK)) == 0
+                if (memcmp(device->recv_line_buf, AT_RESP_END_OK, strlen(AT_RESP_END_OK)) == 0
                         && resp->line_num == 0)
                 {
                     /* get the end data by response result, return response state END_OK. */
-                    client->resp_status = AT_RESP_OK;
+                    device->resp_status = AT_RESP_OK;
                 }
-                else if (rt_strstr(client->recv_line_buf, AT_RESP_END_ERROR)
-                        || (rt_memcmp(client->recv_line_buf, AT_RESP_END_FAIL, rt_strlen(AT_RESP_END_FAIL)) == 0))
+                else if (strstr(device->recv_line_buf, AT_RESP_END_ERROR)
+                        || (memcmp(device->recv_line_buf, AT_RESP_END_FAIL, strlen(AT_RESP_END_FAIL)) == 0))
                 {
-                    client->resp_status = AT_RESP_ERROR;
+                    device->resp_status = AT_RESP_ERROR;
                 }
                 else if (resp->line_counts == resp->line_num && resp->line_num)
                 {
                     /* get the end data by response line, return response state END_OK.*/
-                    client->resp_status = AT_RESP_OK;
+                    device->resp_status = AT_RESP_OK;
                 }
                 else
                 {
                     continue;
                 }
 
-                client->resp = RT_NULL;
-                rt_sem_release(client->resp_notice);
+                device->resp = NULL;
+                platform_semphr_unlock(device->resp_semphr);
             }
             else
             {
-//                log_d("unrecognized line: %.*s", client->recv_line_len, client->recv_line_buf);
+                printf("unrecognized line: %.*s", device->recv_line_len, device->recv_line_buf);
             }
         }
     }
@@ -457,7 +480,7 @@ static void client_parser(esp8266_obj_t device)
 void at_init(esp8266_obj_t device)
 {
 	esp8266_init(device, "ESP8266");
-//	at_obj_set_urc_table(device, urc_table, sizeof(urc_table)/sizeof(urc_table[0]));
+	at_obj_set_urc_table(device, urc_table, sizeof(urc_table)/sizeof(urc_table[0]));
 }
 
 int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
@@ -469,8 +492,8 @@ int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
 		return -AT_ERR;
 	}
 
-	device->status = AT_RESP_OK;
-	device->cmd_buffer = resp;
+	device->resp_status = AT_RESP_OK;
+	device->resp = resp;
 	
 	if (resp != NULL)
 	{
@@ -485,14 +508,14 @@ int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
 
 	if(resp != NULL)
 	{
-		if(device->status != AT_RESP_OK)
+		if(device->resp_status != AT_RESP_OK)
 		{
 			printf("execute command (%.*s) failed!", cmd);
 			ret = -AT_ERR;
 		}
 	}
 
-	device->cmd_buffer = NULL;
+	device->resp = NULL;
 
 	platform_mutex_unlock(device->mutex);
 
@@ -516,11 +539,6 @@ void AT_recv_cmd_task(void* param)
 			if(strstr(buf, "OK"))
 			{
 				printf("OK\r\n");
-				i = 0;
-			}
-			else if(get_IPD(buf))
-			{
-				printf("get IPD\r\n");
 				i = 0;
 			}
 			else
