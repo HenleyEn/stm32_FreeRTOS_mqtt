@@ -16,10 +16,17 @@
 #define WIFI_SSID	"1"
 #define WIFI_PASSWORD	"1"
 
-/*
- *	This function will create a response object
- *	@param buf_size
+/**
+ * Create response object.
  *
+ * @param buf_size the maximum response buffer size
+ * @param line_num the number of setting response lines
+ *         = 0: the response data will auto return when received 'OK' or 'ERROR'
+ *        != 0: the response data will return when received setting lines number data
+ * @param timeout the maximum response time
+ *
+ * @return != RT_NULL: response object
+ *          = RT_NULL: no memory
  */
 at_response_t at_create_resp(int buf_size, int line_num, int timeout)
 {
@@ -48,7 +55,10 @@ at_response_t at_create_resp(int buf_size, int line_num, int timeout)
 	return resp;
 }
 
-
+/**
+ * 	Delete response object 
+ * 	@param resp the response object
+*/
 void at_delete_resp(at_response_t resp)
 {
 	if (resp && resp->buf)
@@ -70,8 +80,8 @@ void at_delete_resp(at_response_t resp)
  * @param resp response object
  * @param resp_line line number, start from '1'
  *
- * @return != RT_NULL: response line buffer
- *          = RT_NULL: input response line error
+ * @return != NULL: response line buffer
+ *          = NULL: input response line error
  */
 
 const char* resp_get_line(at_response_t resp, int resp_line)
@@ -94,13 +104,24 @@ const char* resp_get_line(at_response_t resp, int resp_line)
 	        return resp_line_buf;
 	    }
 
-		/* +1 is '\0' */
+		/* +1 is '\0' , end recvice data end sign is '\0' */
 	    resp_buf += strlen(resp_buf) + 1;
 	}
 
 	return NULL;
 }
 
+/**
+ * Get and parse AT response buffer arguments by line number.
+ *
+ * @param resp response object
+ * @param resp_line line number, start from '1'
+ * @param resp_expr response buffer expression
+ *
+ * @return -1 : input response line number error or get line buffer error
+ *          0 : parsed without match
+ *         >0 : the number of arguments successfully parsed
+ */
 int resp_parse_line_args(at_response_t resp, int resp_line, const char *resp_expr, ...)
 {
     va_list args;
@@ -122,6 +143,16 @@ int resp_parse_line_args(at_response_t resp, int resp_line, const char *resp_exp
     return resp_args_num;
 }
 
+/**
+ * @brief set URC table
+ * 
+ * @param device  device object
+ * @param urc_table urc table 
+ * @param urc_table_size table size
+ *
+ * @return != AT_OK  OK
+ *			= -AT_ERR ERROR
+ */
 int at_obj_set_urc_table(esp8266_obj_t device,  struct at_urc *urc_table, int urc_table_size)
 {
 	int idx;
@@ -137,7 +168,7 @@ int at_obj_set_urc_table(esp8266_obj_t device,  struct at_urc *urc_table, int ur
 		 configASSERT(urc_table[idx].begin_str);
 		 configASSERT(urc_table[idx].end_str);
 	}
-
+	
 	if(device->urc_table_size == 0)
 	{
 		device->urc_table = (at_urc_table_t) pvPortCalloc(1, sizeof(struct at_urc_table));
