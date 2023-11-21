@@ -22,8 +22,7 @@ void task_start(void* param)
 
 
 	taskENTER_CRITICAL();
-	
-	at_init(&esp8266_dev);
+	esp8266_init(&esp8266_dev, "ESP8266_device");
 	do_create_parse_task();
 	do_create_test_task();
 	
@@ -83,29 +82,21 @@ void do_create_test_task(void)
 void at_test(void* param)
 {
 
-	printf("at_test\r\n");
 	at_response_t resp = NULL;
 	const char* line_buffer = NULL;
-
-	resp = at_create_resp(20, 0, 100);
+	resp = at_create_resp(20, 0, 1000);
 	
+	char *ip, *mac;
+
 	if(resp != NULL)
 	{
-		AT_send_obj_cmd(&esp8266_dev, resp, "AT");
-
 		printf("resp data:\r\n");
+		AT_send_obj_cmd(&esp8266_dev, resp, "AT");	
 		
-		for(int line_num = 1; line_num <= resp->line_counts; line_num++)
-		{
-			if((line_buffer = resp_get_line(resp, line_num)) != NULL)
-			{
-				printf("line %d buffer : %s", line_num, line_buffer);
-			}
-			else
-			{
-				printf("Parse line buffer error!");
-			}
-		}
+		/* 自定义解析表达式，解析当前行号数据中的信息 */
+		resp_parse_line_args(resp, 1,"IP=%s", ip);
+		resp_parse_line_args(resp, 2,"MAC=%s", mac);
+		printf("IP=%s, MAC=%s\r\n", ip, mac);
 
 		if(resp)
 		{
@@ -118,7 +109,5 @@ void at_test(void* param)
 	{
 		vTaskDelay(3);
 	}
-
-
 }
 

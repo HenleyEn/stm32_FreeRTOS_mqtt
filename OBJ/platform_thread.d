@@ -1,8 +1,8 @@
 ..\obj\platform_thread.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_thread.c
 ..\obj\platform_thread.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_thread.h
 ..\obj\platform_thread.o: ..\FreeRTOS\include\FreeRTOS.h
-..\obj\platform_thread.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
-..\obj\platform_thread.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\platform_thread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\platform_thread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\platform_thread.o: ..\USER\FreeRTOSConfig.h
 ..\obj\platform_thread.o: ..\FreeRTOS\include\projdefs.h
 ..\obj\platform_thread.o: ..\FreeRTOS\include\portable.h
@@ -12,5 +12,5 @@
 ..\obj\platform_thread.o: ..\FreeRTOS\include\task.h
 ..\obj\platform_thread.o: ..\FreeRTOS\include\list.h
 ..\obj\platform_thread.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_memory.h
-..\obj\platform_thread.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
-..\obj\platform_thread.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\platform_thread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\platform_thread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

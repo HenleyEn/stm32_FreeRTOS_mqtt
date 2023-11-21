@@ -1,10 +1,10 @@
 ..\obj\nettype_tcp.o: ..\DRIVE\mqttclient\network\nettype_tcp.c
 ..\obj\nettype_tcp.o: ..\DRIVE\mqttclient\network\nettype_tcp.h
 ..\obj\nettype_tcp.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_net_socket.h
-..\obj\nettype_tcp.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
+..\obj\nettype_tcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\nettype_tcp.o: ..\DRIVE\mqttclient\network\network.h
 ..\obj\nettype_tcp.o: ..\DRIVE\mqttclient\mqttclient\mqtt_defconfig.h
 ..\obj\nettype_tcp.o: ..\DRIVE\mqttclient\test\mqtt_config.h
 ..\obj\nettype_tcp.o: ..\DRIVE\mqttclient\common\mqtt_error.h
 ..\obj\nettype_tcp.o: ..\DRIVE\mqttclient\common\mqtt_log.h
-..\obj\nettype_tcp.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\nettype_tcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

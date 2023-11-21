@@ -7,6 +7,16 @@
 
 struct ringbuf USART3_RingBuf;
 
+/*
+ * USART1
+ * PA9	TX
+ * PA10 RX
+ *  
+ * USART3
+ *  PB10 TX
+ *  PB11 RX
+ */
+
 void USART1_Config(uint32_t BaudRate)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -168,15 +178,15 @@ int USART3_Recv_buf(esp8266_obj_t device, int offset, void* data_buf, int size)
 	return 1;
 }
 
-/*
-int fputc(int ch, FILE* f)
-{
-	USART_TypeDef* USARTx = USART1;
-	while((USARTx->SR & (1 << 7)) == 0); 
-	USARTx->DR = ch;
-	return ch;
-}
-*/
+
+// int fputc(int ch, FILE* f)
+// {
+// 	USART_TypeDef* USARTx = USART1;
+// 	while((USARTx->SR & (1 << 7)) == 0); 
+// 	USARTx->DR = ch;
+// 	return ch;
+// }
+
 
 
 int fputc(int ch, FILE *f)

@@ -50,7 +50,6 @@ int platform_mutex_destroy(platform_mutex_t* m)
 
 int platform_semaphore_init(struct platform_semaphore *semphr, int max_count, int init_count)
 {
-	configASSERT(max_count < init_count);
    	semphr->semaphore = xSemaphoreCreateCounting(max_count, init_count);
     return 0;
 }

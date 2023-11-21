@@ -1,6 +1,6 @@
 ..\obj\mqttconnectserver.o: ..\DRIVE\mqttclient\mqtt\MQTTConnectServer.c
 ..\obj\mqttconnectserver.o: ..\DRIVE\mqttclient\mqtt\StackTrace.h
-..\obj\mqttconnectserver.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\mqttconnectserver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\mqttconnectserver.o: ..\DRIVE\mqttclient\mqtt\MQTTPacket.h
 ..\obj\mqttconnectserver.o: ..\DRIVE\mqttclient\mqtt\MQTTConnect.h
 ..\obj\mqttconnectserver.o: ..\DRIVE\mqttclient\mqtt\MQTTPublish.h
@@ -8,4 +8,4 @@
 ..\obj\mqttconnectserver.o: ..\DRIVE\mqttclient\mqtt\MQTTUnsubscribe.h
 ..\obj\mqttconnectserver.o: ..\DRIVE\mqttclient\mqtt\MQTTFormat.h
 ..\obj\mqttconnectserver.o: ..\DRIVE\mqttclient\mqtt\MQTTPacket.h
-..\obj\mqttconnectserver.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
+..\obj\mqttconnectserver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

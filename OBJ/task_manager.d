@@ -1,12 +1,12 @@
 ..\obj\task_manager.o: ..\DRIVE\src\task_manager.c
 ..\obj\task_manager.o: ..\USER\include.h
-..\obj\task_manager.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
-..\obj\task_manager.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
-..\obj\task_manager.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdarg.h
-..\obj\task_manager.o: D:\Keil5\ARM\ARMCC\bin\..\include\assert.h
+..\obj\task_manager.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\task_manager.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\task_manager.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\task_manager.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 ..\obj\task_manager.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\task_manager.o: ..\MDK_ARM\core_cm3.h
-..\obj\task_manager.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\task_manager.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\task_manager.o: ..\MDK_ARM\system_stm32f10x.h
 ..\obj\task_manager.o: ..\USER\stm32f10x_conf.h
 ..\obj\task_manager.o: ..\STM32F10xLIB\inc\stm32f10x_adc.h
@@ -34,7 +34,7 @@
 ..\obj\task_manager.o: ..\STM32F10xLIB\inc\stm32f10x_wwdg.h
 ..\obj\task_manager.o: ..\STM32F10xLIB\inc\misc.h
 ..\obj\task_manager.o: ..\FreeRTOS\include\FreeRTOS.h
-..\obj\task_manager.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
+..\obj\task_manager.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\task_manager.o: ..\USER\FreeRTOSConfig.h
 ..\obj\task_manager.o: ..\FreeRTOS\include\projdefs.h
 ..\obj\task_manager.o: ..\FreeRTOS\include\portable.h
@@ -48,7 +48,7 @@
 ..\obj\task_manager.o: ..\USER\projectConfig.h
 ..\obj\task_manager.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
 ..\obj\task_manager.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
-..\obj\task_manager.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
+..\obj\task_manager.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\task_manager.o: ..\DRIVE\HAL\hal_at.h
 ..\obj\task_manager.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\task_manager.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h

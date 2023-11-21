@@ -1,13 +1,13 @@
 ..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_net_socket.c
 ..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_net_socket.h
-..\obj\platform_net_socket.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
+..\obj\platform_net_socket.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\network\network.h
 ..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\mqttclient\mqtt_defconfig.h
 ..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\test\mqtt_config.h
 ..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\common\mqtt_error.h
 ..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_timer.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\FreeRTOS.h
-..\obj\platform_net_socket.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\platform_net_socket.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\platform_net_socket.o: ..\USER\FreeRTOSConfig.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\projdefs.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\portable.h
@@ -23,4 +23,4 @@
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\list.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\at.h
-..\obj\platform_net_socket.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\platform_net_socket.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

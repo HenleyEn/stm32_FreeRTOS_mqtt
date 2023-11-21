@@ -1,8 +1,8 @@
 ..\obj\network.o: ..\DRIVE\mqttclient\network\network.c
 ..\obj\network.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_timer.h
 ..\obj\network.o: ..\FreeRTOS\include\FreeRTOS.h
-..\obj\network.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
-..\obj\network.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\network.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\network.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\network.o: ..\USER\FreeRTOSConfig.h
 ..\obj\network.o: ..\FreeRTOS\include\projdefs.h
 ..\obj\network.o: ..\FreeRTOS\include\portable.h
@@ -10,8 +10,8 @@
 ..\obj\network.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
 ..\obj\network.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\obj\network.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_memory.h
-..\obj\network.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
-..\obj\network.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\network.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\network.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\network.o: ..\DRIVE\mqttclient\network\nettype_tcp.h
 ..\obj\network.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_net_socket.h
 ..\obj\network.o: ..\DRIVE\mqttclient\network\network.h

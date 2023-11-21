@@ -6,6 +6,6 @@
 ..\obj\mqttsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTUnsubscribe.h
 ..\obj\mqttsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTFormat.h
 ..\obj\mqttsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\StackTrace.h
-..\obj\mqttsubscribeserver.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\mqttsubscribeserver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\mqttsubscribeserver.o: ..\DRIVE\mqttclient\mqtt\MQTTPacket.h
-..\obj\mqttsubscribeserver.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
+..\obj\mqttsubscribeserver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

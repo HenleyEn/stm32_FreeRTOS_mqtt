@@ -1,7 +1,7 @@
 ..\obj\system_stm32f10x.o: ..\MDK_ARM\system_stm32f10x.c
 ..\obj\system_stm32f10x.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\system_stm32f10x.o: ..\MDK_ARM\core_cm3.h
-..\obj\system_stm32f10x.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\system_stm32f10x.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\system_stm32f10x.o: ..\MDK_ARM\system_stm32f10x.h
 ..\obj\system_stm32f10x.o: ..\USER\stm32f10x_conf.h
 ..\obj\system_stm32f10x.o: ..\STM32F10xLIB\inc\stm32f10x_adc.h

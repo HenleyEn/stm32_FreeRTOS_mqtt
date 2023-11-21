@@ -1,8 +1,8 @@
 ..\obj\platform_mutex.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.c
 ..\obj\platform_mutex.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\platform_mutex.o: ..\FreeRTOS\include\FreeRTOS.h
-..\obj\platform_mutex.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
-..\obj\platform_mutex.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\platform_mutex.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\platform_mutex.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\platform_mutex.o: ..\USER\FreeRTOSConfig.h
 ..\obj\platform_mutex.o: ..\FreeRTOS\include\projdefs.h
 ..\obj\platform_mutex.o: ..\FreeRTOS\include\portable.h

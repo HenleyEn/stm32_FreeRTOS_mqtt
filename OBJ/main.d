@@ -1,12 +1,12 @@
 ..\obj\main.o: ..\USER\main.c
 ..\obj\main.o: ..\USER\include.h
-..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
-..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
-..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdarg.h
-..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\assert.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 ..\obj\main.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\main.o: ..\MDK_ARM\core_cm3.h
-..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\main.o: ..\MDK_ARM\system_stm32f10x.h
 ..\obj\main.o: ..\USER\stm32f10x_conf.h
 ..\obj\main.o: ..\STM32F10xLIB\inc\stm32f10x_adc.h
@@ -34,7 +34,7 @@
 ..\obj\main.o: ..\STM32F10xLIB\inc\stm32f10x_wwdg.h
 ..\obj\main.o: ..\STM32F10xLIB\inc\misc.h
 ..\obj\main.o: ..\FreeRTOS\include\FreeRTOS.h
-..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\main.o: ..\USER\FreeRTOSConfig.h
 ..\obj\main.o: ..\FreeRTOS\include\projdefs.h
 ..\obj\main.o: ..\FreeRTOS\include\portable.h
@@ -48,7 +48,7 @@
 ..\obj\main.o: ..\USER\projectConfig.h
 ..\obj\main.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
 ..\obj\main.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
-..\obj\main.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\main.o: ..\DRIVE\HAL\hal_at.h
 ..\obj\main.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\main.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h

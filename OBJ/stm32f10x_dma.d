@@ -2,7 +2,7 @@
 ..\obj\stm32f10x_dma.o: ..\STM32F10xLIB\inc\stm32f10x_dma.h
 ..\obj\stm32f10x_dma.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\stm32f10x_dma.o: ..\MDK_ARM\core_cm3.h
-..\obj\stm32f10x_dma.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\stm32f10x_dma.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\stm32f10x_dma.o: ..\MDK_ARM\system_stm32f10x.h
 ..\obj\stm32f10x_dma.o: ..\USER\stm32f10x_conf.h
 ..\obj\stm32f10x_dma.o: ..\STM32F10xLIB\inc\stm32f10x_adc.h

@@ -2,7 +2,7 @@
 ..\obj\misc.o: ..\STM32F10xLIB\inc\misc.h
 ..\obj\misc.o: ..\MDK_ARM\stm32f10x.h
 ..\obj\misc.o: ..\MDK_ARM\core_cm3.h
-..\obj\misc.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
+..\obj\misc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\misc.o: ..\MDK_ARM\system_stm32f10x.h
 ..\obj\misc.o: ..\USER\stm32f10x_conf.h
 ..\obj\misc.o: ..\STM32F10xLIB\inc\stm32f10x_adc.h

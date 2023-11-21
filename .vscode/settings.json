@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "vector": "c",
+        "type_traits": "c",
+        "cmath": "c",
+        "limits": "c",
+        "task_manager.h": "c",
+        "platform_mutex.h": "c"
+    }
+}

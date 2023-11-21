@@ -4,6 +4,7 @@
 #include "platform_mutex.h"
 #include "ringbuf.h"
 #include "at.h"
+
 typedef struct esp8266_obj *esp8266_obj_t;
 
 enum at_status
@@ -11,7 +12,6 @@ enum at_status
     AT_STATUS_UNINITIALIZED = 0,
     AT_STATUS_INITIALIZED,
     AT_STATUS_CLI,
-
 };
 typedef enum at_status *at_status_t;
 
@@ -74,11 +74,12 @@ typedef struct wifi_info *wifi_info_t;
 struct esp8266_obj
 {
 	/* devicre name */
-	uint8_t *device_name;
+	const char *device_name;
 	ptr_ringbuf_t data_buffer;
 	
 	char end_sign;
 
+	enum at_status status;
 	/* resp */
 	at_response_t resp;
 	at_resp_status_t resp_status;
@@ -87,7 +88,7 @@ struct esp8266_obj
 	char *resp_buf;
 
 	platform_mutex_t* mutex;
-	struct platform_semaphore * rx_semphr;
+	struct platform_semaphore *rx_semphr;
 
 	/* parse recv data */ 
 	char *recv_line_buf;
@@ -97,10 +98,9 @@ struct esp8266_obj
 	/* set urc_table */
 	int urc_table_size;
 	at_urc_table_t urc_table;
-	
 };
 
-int esp8266_init(esp8266_obj_t device, uint8_t* device_name);
+int esp8266_init(esp8266_obj_t device, const char* device_name);
 int esp8266_destory(esp8266_obj_t device);
 void AT_recv_cmd_task(void* param);
 void client_parser(esp8266_obj_t device);

@@ -1,8 +1,8 @@
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\mqttclient\mqttclient.c
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\mqttclient\mqttclient.h
-..\obj\mqttclient.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdio.h
-..\obj\mqttclient.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdint.h
-..\obj\mqttclient.o: D:\Keil5\ARM\ARMCC\bin\..\include\string.h
+..\obj\mqttclient.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\mqttclient.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\mqttclient.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\mqtt\MQTTPacket.h
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\mqtt\MQTTConnect.h
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\mqtt\MQTTPublish.h
@@ -14,7 +14,7 @@
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\common\mqtt_list.h
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_timer.h
 ..\obj\mqttclient.o: ..\FreeRTOS\include\FreeRTOS.h
-..\obj\mqttclient.o: D:\Keil5\ARM\ARMCC\bin\..\include\stddef.h
+..\obj\mqttclient.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 ..\obj\mqttclient.o: ..\USER\FreeRTOSConfig.h
 ..\obj\mqttclient.o: ..\FreeRTOS\include\projdefs.h
 ..\obj\mqttclient.o: ..\FreeRTOS\include\portable.h
@@ -22,7 +22,7 @@
 ..\obj\mqttclient.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
 ..\obj\mqttclient.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_memory.h
-..\obj\mqttclient.o: D:\Keil5\ARM\ARMCC\bin\..\include\stdlib.h
+..\obj\mqttclient.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\mqttclient.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\mqttclient.o: ..\FreeRTOS\include\semphr.h
 ..\obj\mqttclient.o: ..\FreeRTOS\include\queue.h
