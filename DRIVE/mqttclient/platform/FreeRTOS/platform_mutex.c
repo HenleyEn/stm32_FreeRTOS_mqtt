@@ -59,6 +59,11 @@ int platform_semphr_lock(struct platform_semaphore* semphr)
     return xSemaphoreTake(semphr->semaphore, portMAX_DELAY);
 }
 
+int platform_semphr_lock_timeout(struct platform_semaphore* semphr, int timeout)
+{
+    return xSemaphoreTake(semphr->semaphore, timeout);
+}
+
 int platform_semphr_unlock(struct platform_semaphore* semphr)
 {
     return xSemaphoreGive(semphr->semaphore);

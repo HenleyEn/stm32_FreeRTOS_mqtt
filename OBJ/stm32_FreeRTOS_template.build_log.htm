@@ -27,12 +27,15 @@ Project File Date:  11/21/2023
 <h2>Output:</h2>
 *** Using Compiler 'V5.04 update 1 (build 49)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'stm32_FreeRTOS_template'
+compiling hal_at.c...
 compiling task_manager.c...
-..\DRIVE\src\task_manager.c(86): warning:  #177-D: variable "line_buffer" was declared but never referenced
+..\DRIVE\src\task_manager.c(87): warning:  #177-D: variable "line_buffer" was declared but never referenced
   	const char* line_buffer = NULL;
 ..\DRIVE\src\task_manager.c: 1 warning, 0 errors
+compiling USART.c...
+compiling platform_net_socket.c...
 linking...
-Program Size: Code=21958 RO-data=610 RW-data=216 ZI-data=18256  
+Program Size: Code=22674 RO-data=610 RW-data=220 ZI-data=18252  
 FromELF: creating hex file...
 "..\OBJ\stm32_FreeRTOS_template.axf" - 0 Error(s), 1 Warning(s).
 
@@ -57,7 +60,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>

@@ -81,22 +81,32 @@ void do_create_test_task(void)
 
 void at_test(void* param)
 {
+#define AT_CMD_MAX_LEN 128
 
 	at_response_t resp = NULL;
 	const char* line_buffer = NULL;
-	resp = at_create_resp(20, 0, 1000);
-	
-	char *ip, *mac;
+	resp = at_create_resp(200, 0, 1000);
 
 	if(resp != NULL)
 	{
 		printf("resp data:\r\n");
-		AT_send_obj_cmd(&esp8266_dev, resp, "AT");	
-		
-		/* 自定义解析表达式，解析当前行号数据中的信息 */
-		resp_parse_line_args(resp, 1,"IP=%s", ip);
-		resp_parse_line_args(resp, 2,"MAC=%s", mac);
-		printf("IP=%s, MAC=%s\r\n", ip, mac);
+		AT_send_obj_cmd(&esp8266_dev, resp, "AT+CIFSR");	
+
+
+		char resp_arg[AT_CMD_MAX_LEN] = { 0 };
+        const char * resp_expr = "%*[^\"]\"%[^\"]\"";
+
+        printf(" Parse arguments");
+        if (resp_parse_line_args(resp, 1, resp_expr, resp_arg) == 1)
+        {
+            printf("Station IP  : %s", resp_arg);
+            memset(resp_arg, 0x00, AT_CMD_MAX_LEN);
+        }
+
+        if (resp_parse_line_args(resp, 2, resp_expr, resp_arg) == 1)
+        {
+            printf("Station MAC : %s", resp_arg);
+        }
 
 		if(resp)
 		{

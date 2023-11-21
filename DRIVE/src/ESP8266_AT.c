@@ -6,6 +6,7 @@
 
 #define AT_OK	0
 #define AT_ERR	1
+#define AT_TIMEOUT		2
 #define AT_PACK_FULL	3
 
 #define AT_RESP_END_OK                 "OK"
@@ -539,9 +540,7 @@ int esp8266_init(esp8266_obj_t device, const char* device_name)
 			device->resp_semphr = (platform_semaphore_t)pvPortMalloc(sizeof(struct platform_semaphore));
 			
 			ringbuf_init(device->data_buffer);
-
 			at_client_init(device, device_name, AT_RECV_BUF_LEN);
-			// platform_mutex_lock(device->mutex);//mutex = 0,then it can block and wait
 			at_obj_set_urc_table(device, urc_table, sizeof(urc_table)/sizeof(urc_table[0]));	
 			
 			return TRUE;	
@@ -580,7 +579,8 @@ int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
 	{
 		return -AT_ERR;
 	}
-
+	platform_mutex_lock_timeout(device->mutex, portMAX_DELAY);
+	
 	device->resp_status = AT_RESP_OK;
 	device->resp = resp;
 	
@@ -593,8 +593,6 @@ int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
 	HAL_AT_send_cmd(cmd, strlen(cmd));
 	HAL_AT_send_cmd("\r\n", 2);	
 	
-	platform_mutex_lock_timeout(device->mutex, portMAX_DELAY);
-
 	if(resp != NULL)
 	{
 		if(device->resp_status != AT_RESP_OK)
@@ -603,6 +601,15 @@ int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
 			ret = -AT_ERR;
 		}
 	}
+
+	if (resp != NULL)
+    {
+        if (platform_semphr_lock_timeout(device->resp_semphr, resp->timeout) != pdPASS)
+        {
+            device->resp_status = AT_RESP_TIMEOUT;
+            ret = -AT_TIMEOUT;
+        }
+    }
 
 	device->resp = NULL;
 

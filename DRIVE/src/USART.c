@@ -99,6 +99,45 @@ void USART3_Config(uint32_t BaudRate)
 	ringbuf_init(&USART3_RingBuf);
 }
 
+/**
+ * @brief DMA USART3 config
+ * 
+ * @param AddrA recv data addr
+ * @param AddrB save data addr
+ * @param Size recevice buffer size
+ */
+void usart3_DMA_config(uint32_t AddrA, uint32_t AddrB, uint16_t Size)
+{
+	DMA_InitTypeDef DMA_InitStructre;
+	
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+
+	DMA_InitStructre.DMA_PeripheralBaseAddr = AddrA;
+	DMA_InitStructre.DMA_MemoryBaseAddr = AddrB;
+	DMA_InitStructre.DMA_BufferSize = Size;
+	/* 方向：外设-> 内存 */
+	DMA_InitStructre.DMA_DIR = DMA_DIR_PeripheralSRC;
+	/* DMA_memory_to_memory disable */
+	DMA_InitStructre.DMA_M2M = DMA_M2M_Disable;
+	/* the Memory data width. Byte width */
+	DMA_InitStructre.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+	/* whether the memory address register is incremented or not. */
+	DMA_InitStructre.DMA_MemoryInc = DMA_MemoryInc_Enable;
+	/* the operation mode of the DMAy Channelx. */
+	DMA_InitStructre.DMA_Mode = DMA_Mode_Circular;
+	/* the Peripheral data width. */
+	DMA_InitStructre.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	/* whether the Peripheral address register is incremented or not. */
+	DMA_InitStructre.DMA_PeripheralInc = DMA_PeripheralInc_Enable;
+	/* the software priority for the DMAy Channelx. */
+	DMA_InitStructre.DMA_Priority = DMA_Priority_VeryHigh;
+
+	DMA_Init(DMA1_Channel3, &DMA_InitStructre);
+	DMA_ITConfig(DMA1_Channel3, DMA_IT_TC|DMA_IT_HT, ENABLE);/* 使能DMA半满、溢满、错误中断 */
+	DMA_ClearFlag(DMA1_IT_TC3);	/* 清除相关状态标识 */
+	DMA_ClearFlag(DMA1_IT_HT3);
+	DMA_Cmd(DMA1_Channel3, ENABLE);
+}
 
 extern struct esp8266_obj esp8266_dev;
 
@@ -120,13 +159,14 @@ void USART3_SendArray(uint8_t arr[], uint16_t length)
 }
 
 struct ringbuf test_buf;
-
+int len = 0;
 void USART3_IRQHandler(void)
 {
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
 	{
-			ringbuf_write(esp8266_dev.data_buffer, USART_ReceiveData(USART3));
-			
+			// ringbuf_write(esp8266_dev.data_buffer, USART_ReceiveData(USART3));
+			esp8266_dev.resp->buf[len++] = USART_ReceiveData(USART3);
+
 			ringbuf_write(&test_buf, USART_ReceiveData(USART3));
 			USART_ClearITPendingBit(USART3, USART_IT_RXNE); 
 //			platform_mutex_unlock_from_isr(esp8266_dev.mutex);
@@ -148,7 +188,6 @@ void USART3_Recv( uint8_t *buf, int timeout)
 		else
 		{
 			platform_mutex_lock_timeout(esp8266_dev.mutex, timeout);
-
 		}
 	}
 }
