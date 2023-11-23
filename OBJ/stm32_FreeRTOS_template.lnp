@@ -41,6 +41,7 @@
 "..\obj\esp8266_at.o"
 "..\obj\hal_at.o"
 "..\obj\task_manager.o"
+"..\obj\fifo.o"
 "..\obj\mqtt_list.o"
 "..\obj\random.o"
 "..\obj\mqttconnectclient.o"

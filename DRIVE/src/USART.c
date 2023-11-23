@@ -100,20 +100,20 @@ void USART3_Config(uint32_t BaudRate)
 }
 
 /**
- * @brief DMA USART3 config
+ * @brief DMA USART3 Rx config
  * 
  * @param AddrA recv data addr
  * @param AddrB save data addr
  * @param Size recevice buffer size
  */
-void usart3_DMA_config(uint32_t AddrA, uint32_t AddrB, uint16_t Size)
+void usart3_rx_DMA_config(uint32_t AddrA, uint32_t AddrB, uint16_t Size)
 {
 	DMA_InitTypeDef DMA_InitStructre;
 	
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 
-	DMA_InitStructre.DMA_PeripheralBaseAddr = AddrA;
-	DMA_InitStructre.DMA_MemoryBaseAddr = AddrB;
+	DMA_InitStructre.DMA_PeripheralBaseAddr = (uint32_t)AddrA;
+	DMA_InitStructre.DMA_MemoryBaseAddr = (uint32_t)AddrB;
 	DMA_InitStructre.DMA_BufferSize = Size;
 	/* 方向：外设-> 内存 */
 	DMA_InitStructre.DMA_DIR = DMA_DIR_PeripheralSRC;
@@ -133,14 +133,45 @@ void usart3_DMA_config(uint32_t AddrA, uint32_t AddrB, uint16_t Size)
 	DMA_InitStructre.DMA_Priority = DMA_Priority_VeryHigh;
 
 	DMA_Init(DMA1_Channel3, &DMA_InitStructre);
-	DMA_ITConfig(DMA1_Channel3, DMA_IT_TC|DMA_IT_HT, ENABLE);/* 使能DMA半满、溢满、错误中断 */
+	DMA_ITConfig(DMA1_Channel3, DMA_IT_TC|DMA_IT_HT, ENABLE);/* 使能DMA半满、溢满 */
 	DMA_ClearFlag(DMA1_IT_TC3);	/* 清除相关状态标识 */
 	DMA_ClearFlag(DMA1_IT_HT3);
 	DMA_Cmd(DMA1_Channel3, ENABLE);
 }
 
-extern struct esp8266_obj esp8266_dev;
+/**
+ * @brief DMA USART3 Tx config
+ * 
+ * @param AddrA get addrB data addr
+ * @param AddrB send buffer source addr
+ * @param Size size
+ */
+void usart3_tx_DMA_config(uint32_t AddrA, uint32_t AddrB, uint16_t Size)
+{
+	DMA_InitTypeDef DMA_InitStructure;
 
+	DMA_DeInit(DMA1_Channel2);
+	DMA_Cmd(DMA1_Channel2, DISABLE);
+
+	DMA_InitStructure.DMA_PeripheralBaseAddr 	= (uint32_t)AddrA;/* UART2发送数据地址 */
+	DMA_InitStructure.DMA_MemoryBaseAddr 		= (uint32_t)AddrB; 	/* 发送数据buf */
+	DMA_InitStructure.DMA_DIR 					= DMA_DIR_PeripheralDST; 	/* 传输方向:内存->外设 */
+	DMA_InitStructure.DMA_BufferSize 			= Size; 			/* 发送数据buf大小 */
+	DMA_InitStructure.DMA_PeripheralInc 		= DMA_PeripheralInc_Disable; 
+	DMA_InitStructure.DMA_MemoryInc 			= DMA_MemoryInc_Enable; 
+	DMA_InitStructure.DMA_PeripheralDataSize 	= DMA_PeripheralDataSize_Byte; 
+	DMA_InitStructure.DMA_MemoryDataSize 		= DMA_MemoryDataSize_Byte;
+	DMA_InitStructure.DMA_Mode 					= DMA_Mode_Normal; 		/* 单次模式 */
+	DMA_InitStructure.DMA_Priority 				= DMA_Priority_High;	 
+	DMA_InitStructure.DMA_M2M 					= DMA_M2M_Disable; 
+
+	DMA_Init(DMA1_Channel2, &DMA_InitStructure);  
+	DMA_ITConfig(DMA1_Channel2, DMA_IT_TC|DMA_IT_TE, ENABLE); /* 使能传输完成中断、错误中断 */
+	DMA_ClearFlag(DMA1_IT_TC4);	/* 清除发送完成标识 */
+	DMA_Cmd(DMA1_Channel2, ENABLE); /* 启动DMA发送 */
+}
+
+extern struct esp8266_obj esp8266_dev;
 
 void USART3_SendByte(uint8_t Byte)
 {
