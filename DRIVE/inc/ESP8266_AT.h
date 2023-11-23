@@ -3,7 +3,6 @@
 
 #include "platform_mutex.h"
 #include "ringbuf.h"
-#include "at.h"
 
 typedef struct esp8266_obj *esp8266_obj_t;
 

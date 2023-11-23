@@ -49,10 +49,11 @@
 ..\obj\main.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
 ..\obj\main.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
 ..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\main.o: ..\DRIVE\inc\fifo.h
+..\obj\main.o: ..\USER\include.h
 ..\obj\main.o: ..\DRIVE\HAL\hal_at.h
 ..\obj\main.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\main.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\main.o: ..\DRIVE\inc\ringbuf.h
-..\obj\main.o: ..\DRIVE\inc\at.h
 ..\obj\main.o: ..\DRIVE\inc\printf_debug_log.h
 ..\obj\main.o: ..\DRIVE\inc\task_manager.h

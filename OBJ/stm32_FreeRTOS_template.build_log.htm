@@ -27,24 +27,16 @@ Project File Date:  11/23/2023
 <h2>Output:</h2>
 *** Using Compiler 'V5.04 update 1 (build 49)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'stm32_FreeRTOS_template'
-compiling fifo.c...
-..\DRIVE\inc\fifo.h(39): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\DRIVE\src\fifo.c(107): warning:  #174-D: expression has no effect
-      pfifo->lock;
-..\DRIVE\src\fifo.c(122): warning:  #174-D: expression has no effect
-      pfifo->unlock;
-..\DRIVE\src\fifo.c(149): warning:  #174-D: expression has no effect
-      pfifo->lock;
-..\DRIVE\src\fifo.c(164): warning:  #174-D: expression has no effect
-      pfifo->unlock;
-..\DRIVE\src\fifo.c(46): warning:  #177-D: function "get_fifo_total_size" was declared but never referenced
-  static uint32_t get_fifo_total_size(fifo_t *pfifo)
-..\DRIVE\src\fifo.c: 6 warnings, 0 errors
-linking...
-Program Size: Code=22766 RO-data=610 RW-data=220 ZI-data=18252  
-FromELF: creating hex file...
-"..\OBJ\stm32_FreeRTOS_template.axf" - 0 Error(s), 6 Warning(s).
+compiling dev_usart.c...
+..\DRIVE\src\dev_usart.c(97): error:  #165: too few arguments in function call
+      fifo_create();
+..\DRIVE\src\dev_usart.c(84): warning:  #177-D: function "fifo_lock" was declared but never referenced
+  static void fifo_lock(void)
+..\DRIVE\src\dev_usart.c(90): warning:  #177-D: function "fifo_unlock" was declared but never referenced
+  static void fifo_unlock(void)
+..\DRIVE\src\dev_usart.c: 2 warnings, 1 error
+compiling bsp_usart_config.c...
+"..\OBJ\stm32_FreeRTOS_template.axf" - 1 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -67,6 +59,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
+Target not created.
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

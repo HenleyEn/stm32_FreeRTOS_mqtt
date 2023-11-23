@@ -1,5 +1,5 @@
 #include "include.h"
-#include "USART.h"
+#include "bsp_usart_config.h"
 
 
 void HAL_AT_send_cmd(uint8_t* str, int str_len)

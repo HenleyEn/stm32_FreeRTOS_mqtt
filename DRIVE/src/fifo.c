@@ -104,7 +104,7 @@ uint32_t fifo_write(fifo_t *pfifo, const uint8_t *pbuf, uint32_t size)
 
     w_size = size;
 
-    pfifo->lock;
+    pfifo->lock();
     while(w_size > 0)
     {
         *(pfifo->pwrite) = *pbuf;
@@ -119,10 +119,18 @@ uint32_t fifo_write(fifo_t *pfifo, const uint8_t *pbuf, uint32_t size)
         pfifo->buf_cnt++;
         w_size--;
     }
-    pfifo->unlock;
+    pfifo->unlock();
     return size;
 }
 
+/**
+ * @brief read fifo
+ * 
+ * @param pfifo 
+ * @param pbuf save the fifo buffer
+ * @param size buffer size
+ * @return uint32_t 
+ */
 uint32_t fifo_read(fifo_t *pfifo, uint8_t *pbuf, uint32_t size)
 {
     if(pfifo == NULL || pbuf == NULL || size == 0)
@@ -146,7 +154,7 @@ uint32_t fifo_read(fifo_t *pfifo, uint8_t *pbuf, uint32_t size)
 
     r_size = size;
 
-    pfifo->lock;
+    pfifo->lock();
     while(r_size > 0)
     {
         *pbuf = *(pfifo->pread);
@@ -161,6 +169,6 @@ uint32_t fifo_read(fifo_t *pfifo, uint8_t *pbuf, uint32_t size)
         pfifo->buf_cnt--;
         r_size--;
     }
-    pfifo->unlock;
+    pfifo->unlock();
     return size;
 }

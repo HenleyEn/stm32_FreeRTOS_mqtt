@@ -2,7 +2,7 @@
 
 #include "task_manager.h"
 #include "ESP8266_AT.h"
-#include "USART.h"
+#include "bsp_usart_config.h"
 
 
 struct esp8266_obj esp8266_dev;

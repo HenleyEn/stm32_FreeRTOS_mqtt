@@ -19,6 +19,7 @@
 
 #include "SEGGER_RTT.h"
 
+#include "fifo.h"
 #include "hal_at.h"
 #include "printf_debug_log.h"
 

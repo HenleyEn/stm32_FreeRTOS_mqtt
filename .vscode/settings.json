@@ -5,6 +5,7 @@
         "cmath": "c",
         "limits": "c",
         "task_manager.h": "c",
-        "platform_mutex.h": "c"
+        "platform_mutex.h": "c",
+        "printf_debug_log.h": "c"
     }
 }

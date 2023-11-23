@@ -7,7 +7,7 @@
  */
 #include "platform_net_socket.h"
 #include "platform_timer.h"
-#include "usart.h"
+#include "bsp_usart_config.h"
 #include "stdio.h"
 
 

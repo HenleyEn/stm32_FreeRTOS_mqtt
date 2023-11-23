@@ -49,9 +49,10 @@
 ..\obj\ringbuf.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
 ..\obj\ringbuf.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
 ..\obj\ringbuf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\ringbuf.o: ..\DRIVE\inc\fifo.h
+..\obj\ringbuf.o: ..\USER\include.h
 ..\obj\ringbuf.o: ..\DRIVE\HAL\hal_at.h
 ..\obj\ringbuf.o: ..\DRIVE\inc\ESP8266_AT.h
 ..\obj\ringbuf.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\ringbuf.o: ..\DRIVE\inc\ringbuf.h
-..\obj\ringbuf.o: ..\DRIVE\inc\at.h
 ..\obj\ringbuf.o: ..\DRIVE\inc\printf_debug_log.h
