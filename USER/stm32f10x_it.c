@@ -140,6 +140,22 @@ void SysTick_Handler(void)
 {
 }
 */
+
+void USART3_IRQHandler(void)
+{
+
+}
+
+void DMA1_Channel2_IRQHandler(void)
+{
+
+}
+
+void DMA1_Channel3_IRQHandler(void)
+{
+
+}
+
 /******************************************************************************/
 /*                 STM32F10x Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

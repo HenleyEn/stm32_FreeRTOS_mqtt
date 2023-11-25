@@ -24,6 +24,7 @@ void USART3_SendArray(uint8_t arr[], uint16_t length)
 
 struct ringbuf test_buf;
 int len = 0;
+/*
 void USART3_IRQHandler(void)
 {
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
@@ -38,6 +39,7 @@ void USART3_IRQHandler(void)
 			
 	}
 }
+*/
 
 platform_mutex_t USART3_recv_mutex;
 
@@ -86,13 +88,62 @@ static void fifo_lock(void)
     taskENTER_CRITICAL();
 }
 
-/* fifo解锁函数 */
+
 static void fifo_unlock(void)
 {
     taskEXIT_CRITICAL();
 }
 
-void uart_fifo_init(void)
+int uart_fifo_init(dev_uart_t *dev)
 {
-    fifo_create();
+	if(dev == NULL)
+	{
+		return NULL;
+	}
+
+    fifo_create(&(dev->rx_fifo), dev->rx_buf, dev->rx_buf_size, fifo_lock, fifo_unlock);
+	fifo_create(&(dev->tx_fifo), dev->tx_buf, dev->tx_buf_size, fifo_lock, fifo_unlock);
+
+	return 1;
+}
+
+/**
+ * @brief uart read fifo
+ * 
+ * @param dev device uart
+ * @param buf save fifo buffer addr
+ * @param size read size
+ * @return uint32_t 
+ */
+uint32_t uart_read(dev_uart_t *dev, uint8_t *buf, uint32_t size)
+{
+	return fifo_read(&(dev->rx_fifo), buf, size);
+}
+
+/**
+ * @brief uart write fifo
+ * 
+ * @param dev device uart
+ * @param buf need write buf
+ * @param size write buf size
+ * @return uint32_t 
+ */
+uint32_t uart_write(dev_uart_t *dev, uint8_t *buf, uint32_t size)
+{
+	return fifo_write(&(dev->tx_fifo), buf, size);
+}
+
+/**
+ * @brief dma finish recevice buffer isr
+ * 
+ * @param dev 
+ */
+void uart_dma_rx_done_isr(dev_uart_t *dev)
+{
+	uint32_t recv_size;
+
+	recv_size = dev->rx_buf_size - dev->last_dma_rx_size;
+
+	fifo_write(&(dev->rx_fifo), &(dev->rx_buf[dev->last_dma_rx_size]), recv_size);
+	dev->last_dma_rx_size = 0;
 }
