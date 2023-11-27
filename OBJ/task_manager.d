@@ -58,3 +58,4 @@
 ..\obj\task_manager.o: ..\DRIVE\inc\printf_debug_log.h
 ..\obj\task_manager.o: ..\DRIVE\inc\task_manager.h
 ..\obj\task_manager.o: ..\DRIVE\inc\bsp_usart_config.h
+..\obj\task_manager.o: ..\DRIVE\inc\dev_usart.h

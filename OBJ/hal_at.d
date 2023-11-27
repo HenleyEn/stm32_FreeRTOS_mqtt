@@ -56,4 +56,4 @@
 ..\obj\hal_at.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\hal_at.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\hal_at.o: ..\DRIVE\inc\printf_debug_log.h
-..\obj\hal_at.o: ..\DRIVE\inc\bsp_usart_config.h
+..\obj\hal_at.o: ..\DRIVE\inc\dev_usart.h

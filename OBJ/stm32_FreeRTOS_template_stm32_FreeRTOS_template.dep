@@ -56,8 +56,8 @@ I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
 I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
 I (..\DRIVE\inc\ringbuf.h)(0x654E70A0)
 I (..\DRIVE\inc\printf_debug_log.h)(0x6554FB02)
-I (..\DRIVE\inc\task_manager.h)(0x6543C379)
-F (..\USER\stm32f10x_it.c)(0x656226FB)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
+I (..\DRIVE\inc\task_manager.h)(0x6564BAF8)
+F (..\USER\stm32f10x_it.c)(0x6564BB93)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
 I (..\USER\stm32f10x_it.h)(0x4D99A59E)
 I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
 I (..\MDK_ARM\core_cm3.h)(0x4D523B58)
@@ -87,6 +87,34 @@ I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
+I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
+I (..\FreeRTOS\include\FreeRTOS.h)(0x64020E50)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53463A44)
+I (..\USER\FreeRTOSConfig.h)(0x655450BB)
+I (..\FreeRTOS\include\projdefs.h)(0x64020E50)
+I (..\FreeRTOS\include\portable.h)(0x64020E50)
+I (..\FreeRTOS\include\deprecated_definitions.h)(0x64020E50)
+I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x64020E50)
+I (..\FreeRTOS\include\mpu_wrappers.h)(0x64020E50)
+I (..\FreeRTOS\include\semphr.h)(0x64020E50)
+I (..\FreeRTOS\include\queue.h)(0x64020E50)
+I (..\FreeRTOS\include\task.h)(0x64020E50)
+I (..\FreeRTOS\include\list.h)(0x64020E50)
+I (..\DRIVE\inc\dev_usart.h)(0x6564C1DF)
+I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
+I (..\DRIVE\inc\ringbuf.h)(0x654E70A0)
+I (..\DRIVE\inc\fifo.h)(0x655F69EA)
+I (..\USER\include.h)(0x655F69D5)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53463A44)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
+I (D:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x53463A44)
+I (D:\Keil_v5\ARM\ARMCC\include\assert.h)(0x53463A44)
+I (..\USER\projectConfig.h)(0x6554FB6B)
+I (..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h)(0x635FA390)
+I (..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h)(0x635FA38F)
+I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x53463A44)
+I (..\DRIVE\HAL\hal_at.h)(0x6554C407)
+I (..\DRIVE\inc\printf_debug_log.h)(0x6554FB02)
 F (..\USER\include.h)(0x655F69D5)()
 F (..\USER\FreeRTOSConfig.h)(0x655450BB)()
 F (..\USER\projectConfig.h)(0x6554FB6B)()
@@ -119,35 +147,6 @@ I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
-F (..\STM32F10xLIB\src\stm32f10x_adc.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_adc.o --omf_browse ..\obj\stm32f10x_adc.crf --depend ..\obj\stm32f10x_adc.d)
-I (..\STM32F10xLIB\inc\stm32f10x_adc.h)(0x4D783BB4)
-I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
-I (..\MDK_ARM\core_cm3.h)(0x4D523B58)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (..\MDK_ARM\system_stm32f10x.h)(0x4D783CAA)
-I (..\USER\stm32f10x_conf.h)(0x4D99A59E)
-I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_crc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dma.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_flash.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_gpio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_i2c.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_iwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_pwr.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rtc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_sdio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
 F (..\STM32F10xLIB\src\stm32f10x_bkp.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_bkp.o --omf_browse ..\obj\stm32f10x_bkp.crf --depend ..\obj\stm32f10x_bkp.d)
 I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
 I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
@@ -157,35 +156,6 @@ I (..\MDK_ARM\system_stm32f10x.h)(0x4D783CAA)
 I (..\USER\stm32f10x_conf.h)(0x4D99A59E)
 I (..\STM32F10xLIB\inc\stm32f10x_adc.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_crc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dma.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_flash.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_gpio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_i2c.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_iwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_pwr.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rtc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_sdio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
-F (..\STM32F10xLIB\src\stm32f10x_can.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_can.o --omf_browse ..\obj\stm32f10x_can.crf --depend ..\obj\stm32f10x_can.d)
-I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
-I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
-I (..\MDK_ARM\core_cm3.h)(0x4D523B58)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (..\MDK_ARM\system_stm32f10x.h)(0x4D783CAA)
-I (..\USER\stm32f10x_conf.h)(0x4D99A59E)
-I (..\STM32F10xLIB\inc\stm32f10x_adc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_crc.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
@@ -247,35 +217,6 @@ I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dma.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_flash.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_gpio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_i2c.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_iwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_pwr.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rtc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_sdio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
-F (..\STM32F10xLIB\src\stm32f10x_dac.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_dac.o --omf_browse ..\obj\stm32f10x_dac.crf --depend ..\obj\stm32f10x_dac.d)
-I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
-I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
-I (..\MDK_ARM\core_cm3.h)(0x4D523B58)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (..\MDK_ARM\system_stm32f10x.h)(0x4D783CAA)
-I (..\USER\stm32f10x_conf.h)(0x4D99A59E)
-I (..\STM32F10xLIB\inc\stm32f10x_adc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_crc.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_dma.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
@@ -380,35 +321,6 @@ I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
-F (..\STM32F10xLIB\src\stm32f10x_flash.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_flash.o --omf_browse ..\obj\stm32f10x_flash.crf --depend ..\obj\stm32f10x_flash.d)
-I (..\STM32F10xLIB\inc\stm32f10x_flash.h)(0x4D783BB4)
-I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
-I (..\MDK_ARM\core_cm3.h)(0x4D523B58)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (..\MDK_ARM\system_stm32f10x.h)(0x4D783CAA)
-I (..\USER\stm32f10x_conf.h)(0x4D99A59E)
-I (..\STM32F10xLIB\inc\stm32f10x_adc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_crc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dma.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_gpio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_i2c.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_iwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_pwr.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rtc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_sdio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
 F (..\STM32F10xLIB\src\stm32f10x_fsmc.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_fsmc.o --omf_browse ..\obj\stm32f10x_fsmc.crf --depend ..\obj\stm32f10x_fsmc.d)
 I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
 I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
@@ -457,35 +369,6 @@ I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_flash.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_i2c.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_iwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_pwr.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rtc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_sdio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
-F (..\STM32F10xLIB\src\stm32f10x_i2c.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_i2c.o --omf_browse ..\obj\stm32f10x_i2c.crf --depend ..\obj\stm32f10x_i2c.d)
-I (..\STM32F10xLIB\inc\stm32f10x_i2c.h)(0x4D783BB4)
-I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
-I (..\MDK_ARM\core_cm3.h)(0x4D523B58)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (..\MDK_ARM\system_stm32f10x.h)(0x4D783CAA)
-I (..\USER\stm32f10x_conf.h)(0x4D99A59E)
-I (..\STM32F10xLIB\inc\stm32f10x_adc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_crc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dma.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_flash.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_gpio.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_iwdg.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_pwr.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
@@ -638,64 +521,6 @@ I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_rtc.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
-F (..\STM32F10xLIB\src\stm32f10x_spi.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_spi.o --omf_browse ..\obj\stm32f10x_spi.crf --depend ..\obj\stm32f10x_spi.d)
-I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
-I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
-I (..\MDK_ARM\core_cm3.h)(0x4D523B58)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (..\MDK_ARM\system_stm32f10x.h)(0x4D783CAA)
-I (..\USER\stm32f10x_conf.h)(0x4D99A59E)
-I (..\STM32F10xLIB\inc\stm32f10x_adc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_crc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dma.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_flash.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_gpio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_i2c.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_iwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_pwr.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rtc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_sdio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
-F (..\STM32F10xLIB\src\stm32f10x_tim.c)(0x4D783BB4)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_tim.o --omf_browse ..\obj\stm32f10x_tim.crf --depend ..\obj\stm32f10x_tim.d)
-I (..\STM32F10xLIB\inc\stm32f10x_tim.h)(0x4D783BB4)
-I (..\MDK_ARM\stm32f10x.h)(0x4D783CB4)
-I (..\MDK_ARM\core_cm3.h)(0x4D523B58)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (..\MDK_ARM\system_stm32f10x.h)(0x4D783CAA)
-I (..\USER\stm32f10x_conf.h)(0x4D99A59E)
-I (..\STM32F10xLIB\inc\stm32f10x_adc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_bkp.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_can.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_cec.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_crc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dac.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dbgmcu.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_dma.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_exti.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_flash.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_fsmc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_gpio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_i2c.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_iwdg.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_pwr.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rcc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_rtc.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_sdio.h)(0x4D783BB4)
-I (..\STM32F10xLIB\inc\stm32f10x_spi.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\STM32F10xLIB\inc\misc.h)(0x4D783BB4)
@@ -1028,7 +853,7 @@ I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
 I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
 I (..\DRIVE\inc\ringbuf.h)(0x654E70A0)
 I (..\DRIVE\inc\printf_debug_log.h)(0x6554FB02)
-F (..\DRIVE\HAL\hal_at.c)(0x655F6EF5)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\hal_at.o --omf_browse ..\obj\hal_at.crf --depend ..\obj\hal_at.d)
+F (..\DRIVE\HAL\hal_at.c)(0x6564B08B)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\hal_at.o --omf_browse ..\obj\hal_at.crf --depend ..\obj\hal_at.d)
 I (..\USER\include.h)(0x655F69D5)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53463A44)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
@@ -1084,8 +909,8 @@ I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
 I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
 I (..\DRIVE\inc\ringbuf.h)(0x654E70A0)
 I (..\DRIVE\inc\printf_debug_log.h)(0x6554FB02)
-I (..\DRIVE\inc\bsp_usart_config.h)(0x655F7460)
-F (..\DRIVE\src\task_manager.c)(0x65622753)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\task_manager.o --omf_browse ..\obj\task_manager.crf --depend ..\obj\task_manager.d)
+I (..\DRIVE\inc\dev_usart.h)(0x6564C1DF)
+F (..\DRIVE\src\task_manager.c)(0x6564BB7D)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\task_manager.o --omf_browse ..\obj\task_manager.crf --depend ..\obj\task_manager.d)
 I (..\USER\include.h)(0x655F69D5)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53463A44)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
@@ -1141,8 +966,9 @@ I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
 I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
 I (..\DRIVE\inc\ringbuf.h)(0x654E70A0)
 I (..\DRIVE\inc\printf_debug_log.h)(0x6554FB02)
-I (..\DRIVE\inc\task_manager.h)(0x6543C379)
-I (..\DRIVE\inc\bsp_usart_config.h)(0x655F7460)
+I (..\DRIVE\inc\task_manager.h)(0x6564BAF8)
+I (..\DRIVE\inc\bsp_usart_config.h)(0x6564ABFD)
+I (..\DRIVE\inc\dev_usart.h)(0x6564C1DF)
 F (..\DRIVE\src\fifo.c)(0x655F6A1D)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\fifo.o --omf_browse ..\obj\fifo.crf --depend ..\obj\fifo.d)
 I (..\DRIVE\inc\fifo.h)(0x655F69EA)
 I (..\USER\include.h)(0x655F69D5)
@@ -1199,7 +1025,7 @@ I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
 I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
 I (..\DRIVE\inc\ringbuf.h)(0x654E70A0)
 I (..\DRIVE\inc\printf_debug_log.h)(0x6554FB02)
-F (..\DRIVE\src\dev_usart.c)(0x6562277D)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\dev_usart.o --omf_browse ..\obj\dev_usart.crf --depend ..\obj\dev_usart.d)
+F (..\DRIVE\src\dev_usart.c)(0x6564C1FD)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\dev_usart.o --omf_browse ..\obj\dev_usart.crf --depend ..\obj\dev_usart.d)
 I (..\USER\include.h)(0x655F69D5)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53463A44)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
@@ -1255,8 +1081,9 @@ I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
 I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
 I (..\DRIVE\inc\ringbuf.h)(0x654E70A0)
 I (..\DRIVE\inc\printf_debug_log.h)(0x6554FB02)
-I (..\DRIVE\inc\dev_usart.h)(0x65606E76)
-F (..\DRIVE\src\bsp_usart_config.c)(0x6561C244)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\bsp_usart_config.o --omf_browse ..\obj\bsp_usart_config.crf --depend ..\obj\bsp_usart_config.d)
+I (..\DRIVE\inc\dev_usart.h)(0x6564C1DF)
+I (..\DRIVE\inc\bsp_usart_config.h)(0x6564ABFD)
+F (..\DRIVE\src\bsp_usart_config.c)(0x6564ABEF)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\bsp_usart_config.o --omf_browse ..\obj\bsp_usart_config.crf --depend ..\obj\bsp_usart_config.d)
 I (..\USER\include.h)(0x655F69D5)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53463A44)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
@@ -1312,7 +1139,7 @@ I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
 I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
 I (..\DRIVE\inc\ringbuf.h)(0x654E70A0)
 I (..\DRIVE\inc\printf_debug_log.h)(0x6554FB02)
-I (..\DRIVE\inc\bsp_usart_config.h)(0x655F7460)
+I (..\DRIVE\inc\bsp_usart_config.h)(0x6564ABFD)
 F (..\DRIVE\mqttclient\common\mqtt_list.c)(0x62145D1B)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\mqtt_list.o --omf_browse ..\obj\mqtt_list.crf --depend ..\obj\mqtt_list.d)
 I (..\DRIVE\mqttclient\common\mqtt_list.h)(0x62145D1B)
 F (..\DRIVE\mqttclient\common\random.c)(0x62145D1B)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O1 --apcs=interwork -I ..\STM32F10xLIB\inc -I ..\MDK_ARM -I ..\USER -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\DRIVE\inc -I ..\DRIVE\mqttclient\common -I ..\DRIVE\mqttclient\mqtt -I ..\DRIVE\mqttclient\mqttclient -I ..\DRIVE\mqttclient\network -I ..\DRIVE\mqttclient\platform\FreeRTOS -I ..\DRIVE\mqttclient\test -I ..\DRIVE\HAL -I ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT -I ..\DRIVE\RTT\SEGGER_RTT_V782a\Config-I.\RTE\_stm32_FreeRTOS_template-ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_STDPERIPH_DRIVER-o ..\obj\random.o --omf_browse ..\obj\random.crf --depend ..\obj\random.d)
@@ -1541,7 +1368,7 @@ I (..\FreeRTOS\include\portable.h)(0x64020E50)
 I (..\FreeRTOS\include\deprecated_definitions.h)(0x64020E50)
 I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x64020E50)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x64020E50)
-I (..\DRIVE\inc\bsp_usart_config.h)(0x655F7460)
+I (..\DRIVE\inc\bsp_usart_config.h)(0x6564ABFD)
 I (..\DRIVE\inc\ESP8266_AT.h)(0x655F6E9B)
 I (..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h)(0x655C7197)
 I (..\FreeRTOS\include\semphr.h)(0x64020E50)

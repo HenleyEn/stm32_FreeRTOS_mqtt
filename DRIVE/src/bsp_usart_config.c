@@ -99,18 +99,16 @@ void USART3_Config(uint32_t BaudRate)
  * @brief DMA USART3 Rx config
  * 
  * @param AddrA recv data addr
- * @param AddrB save data addr
- * @param Size recevice buffer size
  */
-void usart3_rx_DMA_config(uint32_t AddrA, uint32_t AddrB, uint16_t Size)
+void usart3_rx_DMA_config(uint32_t AddrA, uint32_t size)
 {
 	DMA_InitTypeDef DMA_InitStructre;
 	
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 
-	DMA_InitStructre.DMA_PeripheralBaseAddr = (uint32_t)AddrA;
-	DMA_InitStructre.DMA_MemoryBaseAddr = (uint32_t)AddrB;
-	DMA_InitStructre.DMA_BufferSize = Size;
+	DMA_InitStructre.DMA_PeripheralBaseAddr = (uint32_t)&(USART3->DR);
+	DMA_InitStructre.DMA_MemoryBaseAddr = (uint32_t)AddrA;
+	DMA_InitStructre.DMA_BufferSize = size;
 	/* 方向：外设-> 内存 */
 	DMA_InitStructre.DMA_DIR = DMA_DIR_PeripheralSRC;
 	/* DMA_memory_to_memory disable */

@@ -23,7 +23,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
-
+#include "platform_mutex.h"
+#include "dev_usart.h"
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -140,20 +141,27 @@ void SysTick_Handler(void)
 {
 }
 */
-
 void USART3_IRQHandler(void)
 {
-
+  if(USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
+  {
+    USART_ClearITPendingBit(USART3, USART_IT_RXNE); 
+  }
+  platform_mutex_unlock_from_isr(&uart3_dev.dma_mutex);
 }
-
+/* Tx */
 void DMA1_Channel2_IRQHandler(void)
 {
 
 }
 
+/* Rx */
 void DMA1_Channel3_IRQHandler(void)
 {
+  while(DMA_GetITStatus(DMA1_IT_TC3) == RESET);
 
+  DMA_ClearFlag(DMA1_IT_TC3);
+  DMA_Cmd(DMA1_Channel3, DISABLE);
 }
 
 /******************************************************************************/

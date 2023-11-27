@@ -22,16 +22,22 @@ Dialog DLL:      TARMSTM.DLL V1.67.1.0
  
 <h2>Project:</h2>
 D:\OpenSource\RTOS\stm32_FreeRTOS_mqtt\PROJECT\stm32_FreeRTOS_template.uvprojx
-Project File Date:  11/23/2023
+Project File Date:  11/28/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.04 update 1 (build 49)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'stm32_FreeRTOS_template'
+compiling hal_at.c...
+compiling stm32f10x_it.c...
+compiling task_manager.c...
+..\DRIVE\src\task_manager.c(96): warning:  #177-D: variable "line_buffer" was declared but never referenced
+  	const char* line_buffer = NULL;
+..\DRIVE\src\task_manager.c: 1 warning, 0 errors
 compiling dev_usart.c...
 linking...
-Program Size: Code=23142 RO-data=610 RW-data=216 ZI-data=18056  
+Program Size: Code=23298 RO-data=610 RW-data=220 ZI-data=18524  
 FromELF: creating hex file...
-"..\OBJ\stm32_FreeRTOS_template.axf" - 0 Error(s), 0 Warning(s).
+"..\OBJ\stm32_FreeRTOS_template.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -54,7 +60,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

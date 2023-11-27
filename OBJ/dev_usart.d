@@ -57,3 +57,4 @@
 ..\obj\dev_usart.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\dev_usart.o: ..\DRIVE\inc\printf_debug_log.h
 ..\obj\dev_usart.o: ..\DRIVE\inc\dev_usart.h
+..\obj\dev_usart.o: ..\DRIVE\inc\bsp_usart_config.h

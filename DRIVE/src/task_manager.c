@@ -3,32 +3,22 @@
 #include "task_manager.h"
 #include "ESP8266_AT.h"
 #include "bsp_usart_config.h"
-
+#include "dev_usart.h"
 
 struct esp8266_obj esp8266_dev;
 
 TaskHandle_t task_start_handle;
-TaskHandle_t task_test_handle;
 TaskHandle_t task_parse_handle;
+TaskHandle_t task_uart_dma_handle;
+TaskHandle_t task_test_handle;
 
-#define USART_RX_BUF_SIZE			256
-#define USART_TX_BUF_SIZE			256
-#define USART_DMA_RX_BUF_SIZE		256
-#define USART_DMA_TX_BUF_SIZE		256
-
-static uint8_t uart_rx_buf[USART_RX_BUF_SIZE];
-static uint8_t uart_tx_buf[USART_TX_BUF_SIZE];
-static uint8_t uart_dma_rx_buf[USART_DMA_RX_BUF_SIZE];
-static uint8_t uart_dma_tx_buf[USART_DMA_TX_BUF_SIZE];
 
 void task_start(void* param)
 {
 	
 	taskENTER_CRITICAL();
-	USART1_Config(115200);
-	USART3_Config(115200);
-	// usart3_rx_DMA_config();	
-	// usart3_tx_DMA_config();
+	uart_device_init(&uart3_dev);
+
 	vTaskDelay(500);
 	taskEXIT_CRITICAL(); 
 
@@ -89,6 +79,13 @@ void do_create_test_task(void)
 		
 		printf("do_create_test_task is not create\r\n");
 	}
+}
+platform_mutex_t uart_dma_mutex;
+
+void uart_dma_task(void *param)
+{
+	platform_mutex_init(&uart_dma_mutex);
+	
 }
 
 void at_test(void* param)

@@ -1,5 +1,6 @@
 #include "include.h"
 #include "dev_usart.h"
+#include "bsp_usart_config.h"
 #include "ESP8266_AT.h"
 #include "platform_mutex.h"
 #include "ringbuf.h"
@@ -94,15 +95,39 @@ static void fifo_unlock(void)
     taskEXIT_CRITICAL();
 }
 
-int uart_fifo_init(dev_uart_t *dev)
+struct _dev_uart uart3_dev;
+
+#define USART_RX_BUF_SIZE			128
+#define USART_TX_BUF_SIZE			64
+#define USART_DMA_RX_BUF_SIZE		128
+#define USART_DMA_TX_BUF_SIZE		64
+
+static uint8_t uart_rx_buf[USART_RX_BUF_SIZE];
+static uint8_t uart_tx_buf[USART_TX_BUF_SIZE];
+static uint8_t uart_dma_rx_buf[USART_DMA_RX_BUF_SIZE];
+static uint8_t uart_dma_tx_buf[USART_DMA_TX_BUF_SIZE];
+
+int uart_device_init(dev_uart_t *dev)
 {
 	if(dev == NULL)
 	{
 		return NULL;
 	}
+	USART1_Config(115200);
+	USART3_Config(115200);
 
-    fifo_create(&(dev->rx_fifo), dev->rx_buf, dev->rx_buf_size, fifo_lock, fifo_unlock);
-	fifo_create(&(dev->tx_fifo), dev->tx_buf, dev->tx_buf_size, fifo_lock, fifo_unlock);
+	platform_mutex_init(&(dev->dma_mutex));
+
+    fifo_create(&(dev->rx_fifo), uart_rx_buf, sizeof(uart_rx_buf), fifo_lock, fifo_unlock);
+	fifo_create(&(dev->tx_fifo), uart_tx_buf, sizeof(uart_tx_buf), fifo_lock, fifo_unlock);
+
+	dev->dma_rx_buf = uart_dma_rx_buf;
+	dev->dma_rx_buf_size = sizeof(uart_dma_rx_buf);
+	dev->dma_tx_buf = uart_dma_tx_buf;
+	dev->dma_tx_buf_size = sizeof(uart_dma_tx_buf);
+
+	usart3_rx_DMA_config((uint32_t)&(dev->dma_rx_buf), sizeof(uart_dma_rx_buf));	
+	dev->uart_status = UART_INIT;
 
 	return 1;
 }
@@ -141,9 +166,9 @@ uint32_t uart_write(dev_uart_t *dev, uint8_t *buf, uint32_t size)
 void uart_dma_rx_done_isr(dev_uart_t *dev)
 {
 	uint32_t recv_size;
+	dev->uart_status = RECV_STATUS;
+	recv_size = dev->dma_rx_buf_size - dev->last_dma_rx_size;
 
-	recv_size = dev->rx_buf_size - dev->last_dma_rx_size;
-
-	fifo_write(&(dev->rx_fifo), &(dev->rx_buf[dev->last_dma_rx_size]), recv_size);
+	fifo_write(&(dev->rx_fifo), &(dev->dma_rx_buf[dev->last_dma_rx_size]), recv_size);
 	dev->last_dma_rx_size = 0;
 }
