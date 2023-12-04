@@ -1,5 +1,6 @@
 #include "include.h"
 #include "ESP8266_AT.h"
+#include "dev_usart.h"
 
 #if defined		ESP8266_USING
 
@@ -419,7 +420,7 @@ static int at_recv_readline(esp8266_obj_t device)
 void client_parser(esp8266_obj_t device)
 {
     const struct at_urc *urc;
-	printf("FuncName:%s  Line:%d\n", __func__, __LINE__);
+    
     while(1)
     {
 
@@ -522,6 +523,7 @@ static struct at_urc urc_table[3] =
 	{"ERROR", 	"\r\n", 	urc_func},
 	{"+IPD", 	"\r\n", 	urc_func},
 };
+
 
 int esp8266_init(esp8266_obj_t device, const char* device_name)
 {
@@ -652,6 +654,48 @@ void AT_recv_cmd_task(void* param)
 			i = 0;
 		}
 		
+		vTaskDelay(3);
+	}
+}
+
+void at_test(void* param)
+{
+#define AT_CMD_MAX_LEN 128
+
+	at_response_t resp = NULL;
+//	const char* line_buffer = NULL;
+	resp = at_create_resp(200, 0, 1000);
+
+	if(resp != NULL)
+	{
+		printf("resp data:\r\n");
+//		AT_send_obj_cmd(&esp8266_dev, resp, "AT+CIFSR");	
+		AT_send_obj_cmd(&esp8266_dev, resp, "AT");	
+		AT_send_obj_cmd(&esp8266_dev, resp, "AT+CIFSR");	
+		char resp_arg[AT_CMD_MAX_LEN] = { 0 };
+        const char * resp_expr = "%*[^\"]\"%[^\"]\"";
+
+        printf(" Parse arguments");
+        if (resp_parse_line_args(resp, 1, resp_expr, resp_arg) == 1)
+        {
+            printf("Station IP  : %s", resp_arg);
+            memset(resp_arg, 0x00, AT_CMD_MAX_LEN);
+        }
+
+        if (resp_parse_line_args(resp, 2, resp_expr, resp_arg) == 1)
+        {
+            printf("Station MAC : %s", resp_arg);
+        }
+
+		if(resp)
+		{
+			at_delete_resp(resp);
+		}
+	}
+
+
+	while(1)
+	{
 		vTaskDelay(3);
 	}
 }

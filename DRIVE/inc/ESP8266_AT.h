@@ -99,6 +99,8 @@ struct esp8266_obj
 	at_urc_table_t urc_table;
 };
 
+extern struct esp8266_obj esp8266_dev;
+
 int esp8266_init(esp8266_obj_t device, const char* device_name);
 int esp8266_destory(esp8266_obj_t device);
 void AT_recv_cmd_task(void* param);
@@ -110,5 +112,7 @@ void at_delete_resp(at_response_t resp);
 int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd);
 const char* resp_get_line(at_response_t resp, int resp_line);
 int resp_parse_line_args(at_response_t resp, int resp_line, const char *resp_expr, ...);
+
+void at_test(void* param);
 
 #endif

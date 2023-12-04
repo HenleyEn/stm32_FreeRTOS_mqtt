@@ -26,8 +26,7 @@ typedef struct __fifo fifo_t;
 typedef struct __fifo *pfifo;
 
 
-void fifo_create(fifo_t *pfifo, uint8_t *buf, uint32_t size,
-                plock_status_cb lock, plock_status_cb unlock);
+void fifo_create(fifo_t *pfifo, uint8_t *buf, uint32_t size, plock_status_cb lock, plock_status_cb unlock);
 void fifo_destory(fifo_t *pfifo);
 uint32_t fifo_write(fifo_t *pfifo, const uint8_t *pbuf, uint32_t size);
 uint32_t fifo_read(fifo_t *pfifo, uint8_t *pbuf, uint32_t size);

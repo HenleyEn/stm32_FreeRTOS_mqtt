@@ -6,6 +6,7 @@
 extern "C" {
 #endif
 
+extern uint8_t qwer[256];
 void USART1_Config(uint32_t BaudRate);
 void USART3_Config(uint32_t BaudRate);
 

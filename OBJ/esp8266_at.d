@@ -56,3 +56,4 @@
 ..\obj\esp8266_at.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\esp8266_at.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\esp8266_at.o: ..\DRIVE\inc\printf_debug_log.h
+..\obj\esp8266_at.o: ..\DRIVE\inc\dev_usart.h

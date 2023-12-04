@@ -21,7 +21,7 @@ Target DLL:      Segger\JL2CM3.dll V2.99.42.0
 Dialog DLL:      TARMSTM.DLL V1.67.1.0
  
 <h2>Project:</h2>
-D:\OpenSource\RTOS\stm32_FreeRTOS_mqtt\PROJECT\stm32_FreeRTOS_template.uvprojx
+D:\OpenSource\RTOS\stm32_mqtt\stm32_FreeRTOS_mqtt\PROJECT\stm32_FreeRTOS_template.uvprojx
 Project File Date:  11/28/2023
 
 <h2>Output:</h2>
@@ -29,15 +29,33 @@ Project File Date:  11/28/2023
 Build target 'stm32_FreeRTOS_template'
 compiling hal_at.c...
 compiling stm32f10x_it.c...
+..\USER\stm32f10x_it.c(173): warning:  #177-D: variable "recv_len" was declared but never referenced
+  		uint16_t recv_len = 0;
+..\USER\stm32f10x_it.c: 1 warning, 0 errors
+compiling ESP8266_AT.c...
+..\DRIVE\src\ESP8266_AT.c(203): warning:  #223-D: function "pvPortRealloc" declared implicitly
+  		device->urc_table = (struct at_urc_table *) pvPortRealloc(device->urc_table, 
+..\DRIVE\src\ESP8266_AT.c(382): warning:  #68-D: integer conversion resulted in a change of sign
+          at_client_getchar(device, &ch, portMAX_DELAY);
+..\DRIVE\src\ESP8266_AT.c(494): warning:  #177-D: variable "ret" was declared but never referenced
+  	int ret = AT_OK;
+..\DRIVE\src\ESP8266_AT.c(584): warning:  #68-D: integer conversion resulted in a change of sign
+  	platform_mutex_lock_timeout(device->mutex, portMAX_DELAY);
+..\DRIVE\src\ESP8266_AT.c(595): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *"
+  	HAL_AT_send_cmd(cmd, strlen(cmd));
+..\DRIVE\src\ESP8266_AT.c(602): warning:  #224-D: the format string requires additional arguments
+  			printf("execute command (%.*s) failed!", cmd);
+..\DRIVE\src\ESP8266_AT.c(632): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		HAL_AT_recv(&buf[i], portMAX_DELAY);
+..\DRIVE\src\ESP8266_AT.c(632): warning:  #68-D: integer conversion resulted in a change of sign
+  		HAL_AT_recv(&buf[i], portMAX_DELAY);
+..\DRIVE\src\ESP8266_AT.c: 8 warnings, 0 errors
 compiling task_manager.c...
-..\DRIVE\src\task_manager.c(96): warning:  #177-D: variable "line_buffer" was declared but never referenced
-  	const char* line_buffer = NULL;
-..\DRIVE\src\task_manager.c: 1 warning, 0 errors
 compiling dev_usart.c...
 linking...
-Program Size: Code=23298 RO-data=610 RW-data=220 ZI-data=18524  
+Program Size: Code=23570 RO-data=594 RW-data=216 ZI-data=18944  
 FromELF: creating hex file...
-"..\OBJ\stm32_FreeRTOS_template.axf" - 0 Error(s), 1 Warning(s).
+"..\OBJ\stm32_FreeRTOS_template.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 

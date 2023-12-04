@@ -9,7 +9,7 @@ struct esp8266_obj esp8266_dev;
 
 TaskHandle_t task_start_handle;
 TaskHandle_t task_parse_handle;
-TaskHandle_t task_uart_dma_handle;
+// TaskHandle_t task_uart_dma_handle;
 TaskHandle_t task_test_handle;
 
 
@@ -18,18 +18,20 @@ void task_start(void* param)
 	
 	taskENTER_CRITICAL();
 	uart_device_init(&uart3_dev);
+	// USART3_Config(115200);
+	// USART1_Config(115200);
 
 	vTaskDelay(500);
 	taskEXIT_CRITICAL(); 
-
 
 	taskENTER_CRITICAL();
 	esp8266_init(&esp8266_dev, "ESP8266_device");
 	do_create_parse_task();
 	do_create_test_task();
-	
-	vTaskDelete(task_start_handle); 					
 	taskEXIT_CRITICAL(); 
+
+	vTaskDelete(task_start_handle); 					
+
 }
 
 void do_create_start_task(void)
@@ -80,53 +82,5 @@ void do_create_test_task(void)
 		printf("do_create_test_task is not create\r\n");
 	}
 }
-platform_mutex_t uart_dma_mutex;
 
-void uart_dma_task(void *param)
-{
-	platform_mutex_init(&uart_dma_mutex);
-	
-}
-
-void at_test(void* param)
-{
-#define AT_CMD_MAX_LEN 128
-
-	at_response_t resp = NULL;
-	const char* line_buffer = NULL;
-	resp = at_create_resp(200, 0, 1000);
-
-	if(resp != NULL)
-	{
-		printf("resp data:\r\n");
-		AT_send_obj_cmd(&esp8266_dev, resp, "AT+CIFSR");	
-
-
-		char resp_arg[AT_CMD_MAX_LEN] = { 0 };
-        const char * resp_expr = "%*[^\"]\"%[^\"]\"";
-
-        printf(" Parse arguments");
-        if (resp_parse_line_args(resp, 1, resp_expr, resp_arg) == 1)
-        {
-            printf("Station IP  : %s", resp_arg);
-            memset(resp_arg, 0x00, AT_CMD_MAX_LEN);
-        }
-
-        if (resp_parse_line_args(resp, 2, resp_expr, resp_arg) == 1)
-        {
-            printf("Station MAC : %s", resp_arg);
-        }
-
-		if(resp)
-		{
-			at_delete_resp(resp);
-		}
-	}
-
-
-	while(1)
-	{
-		vTaskDelay(3);
-	}
-}
 
