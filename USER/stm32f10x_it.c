@@ -165,16 +165,16 @@ void USART3_IRQHandler(void)
 		ringbuf_write(&test_buf, USART_ReceiveData(USART3));
 		USART_ClearITPendingBit(USART3, USART_IT_RXNE); 
 //			platform_mutex_unlock_from_isr(esp8266_dev.mutex);
-		platform_semphr_unlock_from_isr(esp8266_dev.rx_semphr);			
+		platform_semphr_unlock_from_isr(&esp8266_dev.rx_semphr);			
 	}
   
 	if(USART_GetITStatus(USART3, USART_IT_IDLE) != RESET)
 	{
-		uint16_t recv_len = 0;
 		/* clear the idle flag */
 		USART_ReceiveData(USART3);
 		
 		uart3_dev.dma_status = DMA_UART_IDLE;
+		platform_mutex_unlock_from_isr(&uart3_dev.dma_mutex);
 		
 //		DMA_Cmd(DMA1_Channel3, DISABLE);
 		
@@ -198,17 +198,21 @@ void DMA1_Channel3_IRQHandler(void)
 	if(DMA_GetITStatus(DMA1_IT_TC3) != RESET)
 	{
 		uart3_dev.dma_status = DMA_BUF_FULL;
-		uart_dma_rx_done_isr(&uart3_dev);
+
 		DMA_ClearFlag(DMA1_IT_TC3);
 		DMA_Cmd(DMA1_Channel3, DISABLE);
+		
+		platform_mutex_unlock_from_isr(&uart3_dev.dma_mutex);
 	}
 
 	if(DMA_GetITStatus(DMA1_IT_HT3) != RESET)
 	{
 		uart3_dev.dma_status = DMA_BUF_HAIF;
-		uart_dmarx_half_done_isr(&uart3_dev);
+
 		DMA_ClearFlag(DMA1_IT_HT3);
 		DMA_Cmd(DMA1_Channel3, DISABLE);
+		
+		platform_mutex_unlock_from_isr(&uart3_dev.dma_mutex);
 	}
 }
 

@@ -8,6 +8,8 @@ extern "C" {
 #endif
 
 typedef void (*plock_status_cb)(void);
+typedef struct __fifo fifo_t;
+typedef struct __fifo *pfifo;
 
 struct __fifo
 {
@@ -22,8 +24,6 @@ struct __fifo
     void (*lock)(void);
     void (*unlock)(void);
 };
-typedef struct __fifo fifo_t;
-typedef struct __fifo *pfifo;
 
 
 void fifo_create(fifo_t *pfifo, uint8_t *buf, uint32_t size, plock_status_cb lock, plock_status_cb unlock);

@@ -57,3 +57,5 @@
 ..\obj\main.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\main.o: ..\DRIVE\inc\printf_debug_log.h
 ..\obj\main.o: ..\DRIVE\inc\task_manager.h
+..\obj\main.o: ..\DRIVE\inc\dev_usart.h
+..\obj\main.o: ..\DRIVE\inc\bsp_usart_config.h

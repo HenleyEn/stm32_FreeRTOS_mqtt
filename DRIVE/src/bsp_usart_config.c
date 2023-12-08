@@ -155,7 +155,7 @@ void usart3_rx_DMA_config(uint32_t AddrA, uint32_t size)
 	DMA_ClearFlag(DMA1_IT_TE3);
 	DMA_Cmd(DMA1_Channel3, ENABLE);
 
-//	USART_DMACmd(USART3, USART_DMAReq_Rx, ENABLE);
+	USART_DMACmd(USART3, USART_DMAReq_Rx, ENABLE);
 }
 
 /**

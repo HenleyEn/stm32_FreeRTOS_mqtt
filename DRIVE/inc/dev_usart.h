@@ -23,11 +23,13 @@ extern "C" {
 #define DMA_UART_IDLE		0x04
 #define DMA_INIT			0x00
 
+typedef struct _dev_uart dev_uart_t;
+
 struct _dev_uart
 {
     uint8_t uart_status;
-    fifo_t rx_fifo;
-    fifo_t tx_fifo;
+    fifo_t *rx_fifo;
+    fifo_t *tx_fifo;
 	
 #ifdef USART_DMA
 	DMA_Channel_TypeDef *DMAy_Channelx;
@@ -45,7 +47,6 @@ struct _dev_uart
     // uint8_t set_rx_buf;
 };
 
-typedef struct _dev_uart dev_uart_t;
 
 extern struct _dev_uart uart3_dev;
 

@@ -1,11 +1,47 @@
 #include "include.h"
 #include "dev_usart.h"
 #include "bsp_usart_config.h"
-#include "ESP8266_AT.h"
+//#include "ESP8266_AT.h"
 #include "platform_mutex.h"
 #include "ringbuf.h"
 
 extern struct esp8266_obj esp8266_dev;
+
+static fifo_t dma_rx_fifo;
+static fifo_t dma_tx_fifo;
+
+#ifdef USE_USART3_DMA
+
+#define USART_RX_BUF_SIZE			128
+#define USART_TX_BUF_SIZE			64
+#define USART_DMA_RX_BUF_SIZE		256
+#define USART_DMA_TX_BUF_SIZE		64
+
+static uint8_t uart_rx_buf[USART_RX_BUF_SIZE];
+static uint8_t uart_tx_buf[USART_TX_BUF_SIZE];
+static uint8_t uart_dma_rx_buf[USART_DMA_RX_BUF_SIZE];
+static uint8_t uart_dma_tx_buf[USART_DMA_TX_BUF_SIZE];
+static platform_mutex_t dma_mutex;
+#endif
+struct _dev_uart uart3_dev =
+{
+	.uart_status = UART_INIT,
+	.rx_fifo = &dma_rx_fifo,
+	.tx_fifo = &dma_tx_fifo,
+	
+#ifdef USE_USART3_DMA
+	.DMAy_Channelx = DMA1_Channel3,
+
+    .dma_tx_buf = uart_tx_buf,
+    .dma_tx_buf_size = USART_TX_BUF_SIZE,
+    .dma_rx_buf = uart_rx_buf,
+    .dma_rx_buf_size = USART_RX_BUF_SIZE,
+	
+    .last_dma_rx_size = 0,
+    .dma_status = DMA_INIT,
+    
+#endif
+};
 
 void USART3_SendByte(uint8_t Byte)
 {
@@ -53,7 +89,7 @@ void USART3_Recv( uint8_t *buf, int timeout)
 		}
 		else
 		{
-			platform_mutex_lock_timeout(esp8266_dev.mutex, timeout);
+			platform_mutex_lock_timeout(&esp8266_dev.mutex, timeout);
 		}
 	}
 }
@@ -94,20 +130,9 @@ static void fifo_unlock(void)
     taskEXIT_CRITICAL();
 }
 
-struct _dev_uart uart3_dev;
-
-#define USART_RX_BUF_SIZE			128
-#define USART_TX_BUF_SIZE			64
-#define USART_DMA_RX_BUF_SIZE		256
-#define USART_DMA_TX_BUF_SIZE		64
-
-static uint8_t uart_rx_buf[USART_RX_BUF_SIZE];
-static uint8_t uart_tx_buf[USART_TX_BUF_SIZE];
-static uint8_t uart_dma_rx_buf[USART_DMA_RX_BUF_SIZE];
-static uint8_t uart_dma_tx_buf[USART_DMA_TX_BUF_SIZE];
 
 //extern uint8_t qwer[256];
-uint8_t qwer[256];
+static uint8_t qwer[256];
 int uart_device_init(dev_uart_t *dev)
 {
 	if(dev == NULL)
@@ -116,25 +141,16 @@ int uart_device_init(dev_uart_t *dev)
 	}
 	
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-	// USART1_Config(115200);
+	USART1_Config(115200);
 	USART3_Config(115200);
 
-	platform_mutex_init(&(dev->dma_mutex));
+    fifo_create((dev->rx_fifo), uart_rx_buf, sizeof(uart_rx_buf), fifo_lock, fifo_unlock);
+	fifo_create((dev->tx_fifo), uart_tx_buf, sizeof(uart_tx_buf), fifo_lock, fifo_unlock);
 
-    fifo_create(&(dev->rx_fifo), uart_rx_buf, sizeof(uart_rx_buf), fifo_lock, fifo_unlock);
-	fifo_create(&(dev->tx_fifo), uart_tx_buf, sizeof(uart_tx_buf), fifo_lock, fifo_unlock);
-
-	dev->dma_rx_buf = uart_dma_rx_buf;
-	dev->dma_rx_buf_size = sizeof(uart_dma_rx_buf);
-	dev->dma_tx_buf = uart_dma_tx_buf;
-	dev->dma_tx_buf_size = sizeof(uart_dma_tx_buf);
-	dev->last_dma_rx_size = 0;
-//	usart3_rx_DMA_config((uint32_t)(dev->dma_rx_buf), sizeof(uart_dma_rx_buf));	
-	usart3_rx_DMA_config((uint32_t)(qwer), sizeof(qwer)); 
+	platform_mutex_init(&dev->dma_mutex);
 	
-	dev->DMAy_Channelx = DMA1_Channel3;
-	dev->dma_status = DMA_INIT;
-	dev->uart_status = UART_INIT;
+	usart3_rx_DMA_config((uint32_t)(dev->dma_rx_buf), dev->dma_rx_buf_size); 
+	
 	return 1;
 }
 
@@ -162,7 +178,7 @@ uint16_t get_dma_recv_cnt(DMA_Channel_TypeDef* DMAy_Channelx)
  */
 uint32_t uart_read(dev_uart_t *dev, uint8_t *buf, uint32_t size)
 {
-	return fifo_read(&(dev->rx_fifo), buf, size);
+	return fifo_read((dev->rx_fifo), buf, size);
 }
 
 /**
@@ -175,7 +191,7 @@ uint32_t uart_read(dev_uart_t *dev, uint8_t *buf, uint32_t size)
  */
 uint32_t uart_write(dev_uart_t *dev, uint8_t *buf, uint32_t size)
 {
-	return fifo_write(&(dev->tx_fifo), buf, size);
+	return fifo_write((dev->tx_fifo), buf, size);
 }
 
 /**
@@ -189,7 +205,7 @@ void uart_dma_rx_done_isr(dev_uart_t *dev)
 	dev->uart_status = RECV_STATUS;
 	recv_size = dev->dma_rx_buf_size - dev->last_dma_rx_size;
 
-	fifo_write(&(dev->rx_fifo), (const uint8_t *)&(dev->dma_rx_buf[dev->last_dma_rx_size]), recv_size);
+	fifo_write((dev->rx_fifo), (const uint8_t *)&(dev->dma_rx_buf[dev->last_dma_rx_size]), recv_size);
 	dev->last_dma_rx_size = 0;
 }
 
@@ -224,7 +240,7 @@ void uart_dmarx_half_done_isr(dev_uart_t *dev)
 
 	recv_size = recv_total_size - dev->last_dma_rx_size;
 	
-	fifo_write(&(dev->rx_fifo), 
+	fifo_write((dev->rx_fifo), 
 				   (const uint8_t *)&(dev->dma_rx_buf[dev->last_dma_rx_size]), recv_size);
 				   
 	dev->last_dma_rx_size = recv_total_size;
@@ -239,6 +255,8 @@ int uart_dma_operate(dev_uart_t *dev)
 
 	uint8_t status = dev->uart_status;
 	
+	platform_mutex_lock(&dev->dma_mutex);
+	
 	switch(status)
 	{
 		case DMA_BUF_FULL:
@@ -250,20 +268,27 @@ int uart_dma_operate(dev_uart_t *dev)
 		case DMA_UART_IDLE:
 			uart_dmarx_idle_isr(dev);
 			break;
-		default:break;
+		default:
+			break;
 	}
+	
+//	platform_mutex_unlock(&dev->dma_mutex);
 	
 	return OK;
 }
 
 void uart_dma_task(dev_uart_t *dev)
 {
+	TickType_t waiting_time = 3;
+	
 	uart_device_init(dev);
 	
 	while(1)
 	{
 		
 		uart_dma_operate(dev);
+		vTaskDelay(waiting_time);
 	}
+	 
 }
 

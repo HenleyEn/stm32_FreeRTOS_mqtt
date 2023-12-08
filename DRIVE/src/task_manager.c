@@ -9,7 +9,7 @@ struct esp8266_obj esp8266_dev;
 
 TaskHandle_t task_start_handle;
 TaskHandle_t task_parse_handle;
-// TaskHandle_t task_uart_dma_handle;
+TaskHandle_t task_uart_dma_handle;
 TaskHandle_t task_test_handle;
 
 
@@ -18,16 +18,17 @@ void task_start(void* param)
 	
 	taskENTER_CRITICAL();
 	uart_device_init(&uart3_dev);
-	// USART3_Config(115200);
-	// USART1_Config(115200);
 
 	vTaskDelay(500);
 	taskEXIT_CRITICAL(); 
 
 	taskENTER_CRITICAL();
 	esp8266_init(&esp8266_dev, "ESP8266_device");
+	do_create_uart_dma_task();
 	do_create_parse_task();
+	
 	do_create_test_task();
+	
 	taskEXIT_CRITICAL(); 
 
 	vTaskDelete(task_start_handle); 					
@@ -63,6 +64,28 @@ void do_create_parse_task(void)
 	{
 		
 		printf("do_create_parse_task is not create\r\n");
+	}
+}
+
+void do_create_uart_dma_task(void)
+{	
+	BaseType_t xReturn = pdPASS;					
+
+	xReturn = xTaskCreate((void (*)(void *param))uart_dma_task, 
+							"create_uart_dma_task", 
+							500, 
+							&uart3_dev, 
+							1, 
+							&task_uart_dma_handle);
+	
+	if(pdPASS == xReturn)	
+	{
+		printf("do_create_uart_dma_task is create\r\n");
+	}
+	else
+	{
+		
+		printf("do_create_uart_dma_task is not create\r\n");
 	}
 }
 

@@ -4,7 +4,7 @@
 
 #define TRUE	1
 #define FALSE	0
-#define BUF_SIZE	200
+#define BUF_SIZE	256
 struct ringbuf
 {
 	unsigned char buf[BUF_SIZE];

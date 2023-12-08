@@ -345,7 +345,7 @@ static int at_client_getchar(esp8266_obj_t device, char *ch, int timeout)
 
 	while(1)
 	{
-	    result = platform_semphr_lock(device->rx_semphr);
+	    result = platform_semphr_lock(&device->rx_semphr);
 
 		if (result != AT_OK)
 		{
@@ -478,7 +478,7 @@ void client_parser(esp8266_obj_t device)
                 }
 
                 device->resp = NULL;
-                platform_semphr_unlock(device->resp_semphr);
+                platform_semphr_unlock(&device->resp_semphr);
             }
             else
             {
@@ -497,9 +497,9 @@ static void at_client_para_init(struct esp8266_obj *device)
 	device->recv_line_len = 0;
 	device->recv_line_buf = (char*)pvPortCalloc(1, device->recv_buffer_size);
 
-	platform_mutex_init(device->mutex);
-	platform_semaphore_init(device->rx_semphr, 20, 0);
-	platform_semaphore_init(device->resp_semphr, 20, 0);
+	platform_mutex_init(&device->mutex);
+	platform_semaphore_init(&device->rx_semphr, 20, 0);
+	platform_semaphore_init(&device->resp_semphr, 20, 0);
 
 	device->urc_table = NULL;
 	device->urc_table_size = 0;
@@ -536,10 +536,10 @@ int esp8266_init(esp8266_obj_t device, const char* device_name)
 			// device->resp = (at_response_t)pvPortMalloc(sizeof(struct at_response));
 			device->data_buffer = (ptr_ringbuf_t)pvPortMalloc(sizeof(struct ringbuf));
 			
-			device->mutex = (platform_mutex_t*)pvPortMalloc(sizeof(platform_mutex_t));
-			
-			device->rx_semphr = (platform_semaphore_t)pvPortMalloc(sizeof(struct platform_semaphore));
-			device->resp_semphr = (platform_semaphore_t)pvPortMalloc(sizeof(struct platform_semaphore));
+//			device->mutex = (platform_mutex_t*)pvPortMalloc(sizeof(platform_mutex_t));
+//			
+//			device->rx_semphr = (platform_semaphore_t)pvPortMalloc(sizeof(struct platform_semaphore));
+//			device->resp_semphr = (platform_semaphore_t)pvPortMalloc(sizeof(struct platform_semaphore));
 			
 			ringbuf_init(device->data_buffer);
 			at_client_init(device, device_name, AT_RECV_BUF_LEN);
@@ -560,9 +560,9 @@ int esp8266_destory(esp8266_obj_t device)
 		// vPortFree(device->resp);
 		vPortFree(device->data_buffer);
 		
-		platform_mutex_destroy(device->mutex);
-		platform_semphr_destroy(device->resp_semphr);
-		platform_semphr_destroy(device->rx_semphr);
+//		platform_mutex_destroy(device->mutex);
+//		platform_semphr_destroy(device->resp_semphr);
+//		platform_semphr_destroy(device->rx_semphr);
 		memset(device, 0x00, sizeof(struct esp8266_obj));
 
 		vPortFree(device);
@@ -581,7 +581,7 @@ int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
 	{
 		return -AT_ERR;
 	}
-	platform_mutex_lock_timeout(device->mutex, portMAX_DELAY);
+	platform_mutex_lock_timeout(&device->mutex, portMAX_DELAY);
 	
 	device->resp_status = AT_RESP_OK;
 	device->resp = resp;
@@ -606,7 +606,7 @@ int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
 
 	if (resp != NULL)
     {
-        if (platform_semphr_lock_timeout(device->resp_semphr, resp->timeout) != pdPASS)
+        if (platform_semphr_lock_timeout(&device->resp_semphr, resp->timeout) != pdPASS)
         {
             device->resp_status = AT_RESP_TIMEOUT;
             ret = -AT_TIMEOUT;
@@ -615,7 +615,7 @@ int AT_send_obj_cmd(esp8266_obj_t device, at_response_t resp, uint8_t *cmd)
 
 	device->resp = NULL;
 
-	platform_mutex_unlock(device->mutex);
+	platform_mutex_unlock(&device->mutex);
 
 	return ret;
 }

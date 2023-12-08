@@ -4,6 +4,7 @@
 #define DEBUG
 
 #define ESP8266_USING
+#define USE_USART3_DMA
 #define PLATFORM_MUTEX_USING
-#define DEBUG
+
 #endif

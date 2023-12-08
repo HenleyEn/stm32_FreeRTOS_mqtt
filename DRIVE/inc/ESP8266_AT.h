@@ -3,7 +3,7 @@
 
 #include "platform_mutex.h"
 #include "ringbuf.h"
-
+//#include "dev_usart.h"
 typedef struct esp8266_obj *esp8266_obj_t;
 
 enum at_status
@@ -82,12 +82,12 @@ struct esp8266_obj
 	/* resp */
 	at_response_t resp;
 	at_resp_status_t resp_status;
-	struct platform_semaphore *resp_semphr;
+	struct platform_semaphore resp_semphr;
 	
 	char *resp_buf;
 
-	platform_mutex_t* mutex;
-	struct platform_semaphore *rx_semphr;
+	platform_mutex_t mutex;
+	struct platform_semaphore rx_semphr;
 
 	/* parse recv data */ 
 	char *recv_line_buf;
@@ -97,6 +97,8 @@ struct esp8266_obj
 	/* set urc_table */
 	int urc_table_size;
 	at_urc_table_t urc_table;
+
+//	dev_uart_t uart_dma;
 };
 
 extern struct esp8266_obj esp8266_dev;

@@ -4,6 +4,7 @@
 void task_start(void* param);
 void do_create_start_task(void);
 void do_create_parse_task(void);
+void do_create_uart_dma_task(void);
 
 void do_create_test_task(void);
 
