@@ -15,7 +15,7 @@
 ..\obj\platform_net_socket.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\bsp_usart_config.h
-..\obj\platform_net_socket.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\platform_net_socket.o: ..\DRIVE\inc\at_client.h
 ..\obj\platform_net_socket.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\semphr.h
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\queue.h
@@ -23,3 +23,4 @@
 ..\obj\platform_net_socket.o: ..\FreeRTOS\include\list.h
 ..\obj\platform_net_socket.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\platform_net_socket.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\platform_net_socket.o: ..\USER\projectConfig.h

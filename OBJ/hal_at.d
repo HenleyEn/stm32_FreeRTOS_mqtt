@@ -46,13 +46,13 @@
 ..\obj\hal_at.o: ..\FreeRTOS\include\queue.h
 ..\obj\hal_at.o: ..\FreeRTOS\include\semphr.h
 ..\obj\hal_at.o: ..\USER\projectConfig.h
-..\obj\hal_at.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
-..\obj\hal_at.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
+..\obj\hal_at.o: ..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT.h
+..\obj\hal_at.o: ..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT_Conf.h
 ..\obj\hal_at.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\hal_at.o: ..\DRIVE\inc\fifo.h
 ..\obj\hal_at.o: ..\USER\include.h
 ..\obj\hal_at.o: ..\DRIVE\HAL\hal_at.h
-..\obj\hal_at.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\hal_at.o: ..\DRIVE\inc\at_client.h
 ..\obj\hal_at.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\hal_at.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\hal_at.o: ..\DRIVE\inc\printf_debug_log.h

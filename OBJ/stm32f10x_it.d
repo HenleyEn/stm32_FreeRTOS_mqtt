@@ -43,7 +43,7 @@
 ..\obj\stm32f10x_it.o: ..\FreeRTOS\include\task.h
 ..\obj\stm32f10x_it.o: ..\FreeRTOS\include\list.h
 ..\obj\stm32f10x_it.o: ..\DRIVE\inc\dev_usart.h
-..\obj\stm32f10x_it.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\stm32f10x_it.o: ..\DRIVE\inc\at_client.h
 ..\obj\stm32f10x_it.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\stm32f10x_it.o: ..\DRIVE\inc\fifo.h
 ..\obj\stm32f10x_it.o: ..\USER\include.h
@@ -52,8 +52,8 @@
 ..\obj\stm32f10x_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\stm32f10x_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 ..\obj\stm32f10x_it.o: ..\USER\projectConfig.h
-..\obj\stm32f10x_it.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
-..\obj\stm32f10x_it.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
+..\obj\stm32f10x_it.o: ..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT.h
+..\obj\stm32f10x_it.o: ..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT_Conf.h
 ..\obj\stm32f10x_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\stm32f10x_it.o: ..\DRIVE\inc\fifo.h
 ..\obj\stm32f10x_it.o: ..\DRIVE\HAL\hal_at.h

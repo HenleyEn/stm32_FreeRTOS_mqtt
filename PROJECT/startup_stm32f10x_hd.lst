@@ -112,7 +112,7 @@ ARM Macro Assembler    Page 2
                                                             
    68 00000018 00000000        DCD              UsageFault_Handler ; Usage Faul
                                                             t Handler
-   69 0000001C 00000000        DCD              0           ; Reserved
+   69 0000001C 00000207        DCD              0x00000207  ; Reserved
    70 00000020 00000000        DCD              0           ; Reserved
    71 00000024 00000000        DCD              0           ; Reserved
    72 00000028 00000000        DCD              0           ; Reserved
@@ -553,11 +553,11 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=..\obj\startup_stm32f10x_hd.d -o..\obj\startup_stm32f10x_hd.o -I.\
-RTE\_stm32_FreeRTOS_template -ID:\Keil_v5\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\
-Include -ID:\Keil_v5\ARM\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include --predef
-ine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 538" --predefine="_
-RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --predefine="_RTE_ SETA 1" --lis
-t=.\startup_stm32f10x_hd.lst ..\MDK_ARM\startup_stm32f10x_hd.s
+RTE\_stm32_FreeRTOS_template -ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Includ
+e -ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.1\Device\Include --predefine="__
+MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 523" --predefine="_RTE_ SE
+TA 1" --predefine="STM32F10X_MD SETA 1" --list=.\startup_stm32f10x_hd.lst ..\MD
+K_ARM\startup_stm32f10x_hd.s
 
 
 

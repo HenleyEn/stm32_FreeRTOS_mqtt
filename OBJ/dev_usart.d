@@ -46,13 +46,13 @@
 ..\obj\dev_usart.o: ..\FreeRTOS\include\queue.h
 ..\obj\dev_usart.o: ..\FreeRTOS\include\semphr.h
 ..\obj\dev_usart.o: ..\USER\projectConfig.h
-..\obj\dev_usart.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
-..\obj\dev_usart.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
+..\obj\dev_usart.o: ..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT.h
+..\obj\dev_usart.o: ..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT_Conf.h
 ..\obj\dev_usart.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\dev_usart.o: ..\DRIVE\inc\fifo.h
 ..\obj\dev_usart.o: ..\USER\include.h
 ..\obj\dev_usart.o: ..\DRIVE\HAL\hal_at.h
-..\obj\dev_usart.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\dev_usart.o: ..\DRIVE\inc\at_client.h
 ..\obj\dev_usart.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\dev_usart.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\dev_usart.o: ..\DRIVE\inc\printf_debug_log.h

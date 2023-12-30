@@ -3,8 +3,8 @@
 #include "dev_usart.h"
 #include "bsp_usart_config.h"
 
-static uint8_t *str = "AT+CIFSR";
-static uint8_t test_buf[256];
+//static uint8_t *str = "AT+CIFSR";
+//static uint8_t test_buf[256];
 int main()
 {
 //	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
@@ -18,7 +18,7 @@ int main()
 	do_create_start_task();
 	printf("Welcome to FreeRTOS\r\n");
 
-	while(1);
+	//	while(1);
 	return 0;
 }
 

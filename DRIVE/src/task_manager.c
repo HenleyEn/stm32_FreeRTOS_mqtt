@@ -1,11 +1,11 @@
 #include "include.h"
 
 #include "task_manager.h"
-#include "ESP8266_AT.h"
+#include "at_client.h"
 #include "bsp_usart_config.h"
 #include "dev_usart.h"
+#include "at_device_esp8266.h"
 
-struct esp8266_obj esp8266_dev;
 
 TaskHandle_t task_start_handle;
 TaskHandle_t task_parse_handle;
@@ -23,7 +23,9 @@ void task_start(void* param)
 	taskEXIT_CRITICAL(); 
 
 	taskENTER_CRITICAL();
-	esp8266_init(&esp8266_dev, "ESP8266_device");
+//	esp8266_init(&at_esp8266_device, "esp8266_dev");
+	at_device_esp8266_init(&esp8266_dev);
+	
 	do_create_uart_dma_task();
 	do_create_parse_task();
 	
@@ -52,7 +54,7 @@ void do_create_parse_task(void)
 	xReturn = xTaskCreate((void (*)(void *param))client_parser, 
 							"client_parser", 
 							1024, 
-							&esp8266_dev, 
+							&at_esp8266_device, 
 							1, 
 							&task_parse_handle);
 
@@ -93,7 +95,7 @@ void do_create_test_task(void)
 {	
 	BaseType_t xReturn = pdPASS;					
 
-	xReturn = xTaskCreate(at_test, "task_test", 500, NULL, 1, &task_test_handle);
+	xReturn = xTaskCreate(at_test, "task_test", 500, &at_esp8266_device, 1, &task_test_handle);
 	
 	if(pdPASS == xReturn)	
 	{

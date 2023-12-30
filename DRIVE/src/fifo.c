@@ -16,6 +16,7 @@ void fifo_create(fifo_t *pfifo, uint8_t *buf, uint32_t size,
     {
         return;
     }
+    
     pfifo->buf = buf;
     pfifo->buf_size = size;
     pfifo->buf_cnt = 0;

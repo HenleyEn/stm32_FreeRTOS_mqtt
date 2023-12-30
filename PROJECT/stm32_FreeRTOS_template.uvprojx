@@ -10,8 +10,7 @@
       <TargetName>stm32_FreeRTOS_template</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5040049::V5.04 update 1 (build 49)::.\ARMCC</pCCUsed>
-      <uAC6>0</uAC6>
+      <pCCUsed>5060422::V5.06 update 4 (build 422)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F103C8</Device>
@@ -52,7 +51,7 @@
           <OutputName>stm32_FreeRTOS_template</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
@@ -138,7 +137,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -184,9 +183,6 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
-            <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
-            <nBranchProt>0</nBranchProt>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -327,7 +323,6 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
-            <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>3</v6Lang>
             <v6LangP>5</v6LangP>
@@ -340,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\STM32F10xLIB\inc;..\MDK_ARM;..\USER;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\DRIVE\inc;..\DRIVE\mqttclient\common;..\DRIVE\mqttclient\mqtt;..\DRIVE\mqttclient\mqttclient;..\DRIVE\mqttclient\network;..\DRIVE\mqttclient\platform\FreeRTOS;..\DRIVE\mqttclient\test;..\DRIVE\HAL;..\DRIVE\RTT\SEGGER_RTT_V782a\RTT;..\DRIVE\RTT\SEGGER_RTT_V782a\Config</IncludePath>
+              <IncludePath>..\STM32F10xLIB\inc;..\MDK_ARM;..\USER;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\DRIVE\mqttclient\common;..\DRIVE\mqttclient\mqtt;..\DRIVE\mqttclient\mqttclient;..\DRIVE\mqttclient\network;..\DRIVE\mqttclient\platform\FreeRTOS;..\DRIVE\mqttclient\test;..\DRIVE\HAL;..\DRIVE\inc;..\DRIVE\RTT\SEGGER_RTT_V640\RTT;..\DRIVE\RTT\SEGGER_RTT_V640\Examples</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -353,7 +348,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>1</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -585,11 +580,6 @@
               <FilePath>..\DRIVE\src\ringbuf.c</FilePath>
             </File>
             <File>
-              <FileName>ESP8266_AT.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\DRIVE\src\ESP8266_AT.c</FilePath>
-            </File>
-            <File>
               <FileName>hal_at.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\DRIVE\HAL\hal_at.c</FilePath>
@@ -613,6 +603,16 @@
               <FileName>bsp_usart_config.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\DRIVE\src\bsp_usart_config.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_client.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVE\src\at_client.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_device_esp8266.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVE\src\at_device_esp8266.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -747,12 +747,12 @@
             <File>
               <FileName>SEGGER_RTT.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.c</FilePath>
+              <FilePath>..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT.c</FilePath>
             </File>
             <File>
               <FileName>SEGGER_RTT_printf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT_printf.c</FilePath>
+              <FilePath>..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT_printf.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -775,14 +775,5 @@
     </components>
     <files/>
   </RTE>
-
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>stm32_FreeRTOS_template</LayName>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
 
 </Project>

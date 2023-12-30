@@ -1,6 +1,6 @@
 #ifndef __BSP_USART_CONFIG_H
 #define __BSP_USART_CONFIG_H
-#include "ESP8266_AT.h"
+#include "at_client.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -46,13 +46,13 @@
 ..\obj\bsp_usart_config.o: ..\FreeRTOS\include\queue.h
 ..\obj\bsp_usart_config.o: ..\FreeRTOS\include\semphr.h
 ..\obj\bsp_usart_config.o: ..\USER\projectConfig.h
-..\obj\bsp_usart_config.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\SEGGER_RTT.h
-..\obj\bsp_usart_config.o: ..\DRIVE\RTT\SEGGER_RTT_V782a\RTT\../Config/SEGGER_RTT_Conf.h
+..\obj\bsp_usart_config.o: ..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT.h
+..\obj\bsp_usart_config.o: ..\DRIVE\RTT\SEGGER_RTT_V640\RTT\SEGGER_RTT_Conf.h
 ..\obj\bsp_usart_config.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\bsp_usart_config.o: ..\DRIVE\inc\fifo.h
 ..\obj\bsp_usart_config.o: ..\USER\include.h
 ..\obj\bsp_usart_config.o: ..\DRIVE\HAL\hal_at.h
-..\obj\bsp_usart_config.o: ..\DRIVE\inc\ESP8266_AT.h
+..\obj\bsp_usart_config.o: ..\DRIVE\inc\at_client.h
 ..\obj\bsp_usart_config.o: ..\DRIVE\mqttclient\platform\FreeRTOS\platform_mutex.h
 ..\obj\bsp_usart_config.o: ..\DRIVE\inc\ringbuf.h
 ..\obj\bsp_usart_config.o: ..\DRIVE\inc\printf_debug_log.h

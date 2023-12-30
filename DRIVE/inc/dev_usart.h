@@ -1,7 +1,7 @@
 #ifndef __DEV_USART_H
 #define __DEV_USART_H
 
-#include "ESP8266_AT.h"
+#include "at_client.h"
 #include "fifo.h"
 #include "platform_mutex.h"
 
@@ -24,13 +24,13 @@ extern "C" {
 #define DMA_INIT			0x00
 
 typedef struct _dev_uart dev_uart_t;
-
 struct _dev_uart
 {
     uint8_t uart_status;
     fifo_t *rx_fifo;
     fifo_t *tx_fifo;
-	
+
+	int offset;
 #ifdef USART_DMA
 	DMA_Channel_TypeDef *DMAy_Channelx;
 
@@ -53,9 +53,11 @@ extern struct _dev_uart uart3_dev;
 void USART3_SendByte(uint8_t Byte);
 void USART3_SendArray(uint8_t arr[], uint16_t length);
 void USART3_Recv( uint8_t *buf, int timeout);
-int USART3_Recv_buf(esp8266_obj_t device, int offset, void* data_buf, int size);
+int USART3_Recv_buf(at_client_t device, int offset, void* data_buf, int size);
 
 int uart_device_init(dev_uart_t *dev);
+uint32_t uart_read(dev_uart_t *dev, uint8_t *buf, uint32_t size);
+
 uint16_t get_dma_remain_cnt(DMA_Channel_TypeDef* DMAy_Channelx);
 uint16_t get_dma_recv_cnt(DMA_Channel_TypeDef* DMAy_Channelx);
 void uart_dma_rx_done_isr(dev_uart_t *dev);

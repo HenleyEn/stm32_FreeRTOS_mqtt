@@ -1,11 +1,9 @@
 #include "include.h"
 #include "dev_usart.h"
 #include "bsp_usart_config.h"
-//#include "ESP8266_AT.h"
+#include "at_client.h"
 #include "platform_mutex.h"
 #include "ringbuf.h"
-
-extern struct esp8266_obj esp8266_dev;
 
 static fifo_t dma_rx_fifo;
 static fifo_t dma_tx_fifo;
@@ -28,7 +26,7 @@ struct _dev_uart uart3_dev =
 	.uart_status = UART_INIT,
 	.rx_fifo = &dma_rx_fifo,
 	.tx_fifo = &dma_tx_fifo,
-	
+	.offset = 0,
 #ifdef USE_USART3_DMA
 	.DMAy_Channelx = DMA1_Channel3,
 
@@ -83,29 +81,38 @@ void USART3_Recv( uint8_t *buf, int timeout)
 {
 	while(1)
 	{
-		if(TRUE == ringbuf_read(buf, esp8266_dev.data_buffer))
+		if(TRUE == ringbuf_read(buf, at_esp8266_device.data_buffer))
 		{
 			return;
 		}
 		else
 		{
-			platform_mutex_lock_timeout(&esp8266_dev.mutex, timeout);
+			platform_mutex_lock_timeout(&at_esp8266_device.mutex, timeout);
 		}
 	}
 }
 
-int USART3_Recv_buf(esp8266_obj_t device, int offset, void* data_buf, int size)
+
+int USART3_Recv_buf(at_client_t device, int offset, void* data_buf, int size)
 {
 
 	int str_len;
 	configASSERT(device);
+
+	char *recv_buf;
+	int dev_offset;
+	
+	dev_offset = uart3_dev.offset;
+	recv_buf = uart3_dev.rx_fifo->buf;
 	
 	if(data_buf == NULL)
 	{
 		return NULL;
 	}
 
-	str_len = strlen(device->resp_buf);
+//	uart_read(&uart3_dev, device->resp->buf, size);
+	str_len = strlen(uart3_dev.rx_fifo->buf);
+//	printf("str_len = %d\r\n", str_len);
 	
 	if(str_len < size)
 	{
@@ -113,9 +120,16 @@ int USART3_Recv_buf(esp8266_obj_t device, int offset, void* data_buf, int size)
 	}
 	else
 	{
-		strncpy(data_buf, device->resp_buf + offset, size);
+
+//		data_buf = recv_buf;
+		strncpy(data_buf, recv_buf + dev_offset, size);
+		uart3_dev.offset++;
+		
+//		printf(data_buf);
+//		printf("\r\n");
 	}
 	
+//	printf("offset count is %d\r\n", uart3_dev.offset);
 	return 1;
 }
 
@@ -285,7 +299,6 @@ void uart_dma_task(dev_uart_t *dev)
 	
 	while(1)
 	{
-		
 		uart_dma_operate(dev);
 		vTaskDelay(waiting_time);
 	}
